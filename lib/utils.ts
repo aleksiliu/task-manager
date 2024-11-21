@@ -12,8 +12,7 @@ export const TASK_CONSTRAINTS = {
     PATTERN: /^[\p{L}\p{N}]+$/u
   },
   TASK: {
-    MIN_LENGTH: 1,
-    MAX_LENGTH: 200
+    MIN_LENGTH: 1
   }
 } as const;
 

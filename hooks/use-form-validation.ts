@@ -15,10 +15,6 @@ export function useFormValidation() {
       setError('Task description cannot be empty');
       return false;
     }
-    if (description.length > TASK_CONSTRAINTS.TASK.MAX_LENGTH) {
-      setError(`Task description must be less than ${TASK_CONSTRAINTS.TASK.MAX_LENGTH} characters`);
-      return false;
-    }
     setError(null);
     return true;
   };
