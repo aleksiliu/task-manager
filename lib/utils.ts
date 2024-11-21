@@ -18,11 +18,11 @@ export const TASK_CONSTRAINTS = {
 
 export const validateListName = (name: string, existingNames: string[] = []): string | null => {
   if (name.trim().length < TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH) {
-    return `List name must be at least ${TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH} characters`;
+    return `Task list name must be at least ${TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH} characters`;
   }
 
   if (!TASK_CONSTRAINTS.LIST_NAME.PATTERN.test(name)) {
-    return 'List name can only contain letters and numbers (no spaces or special characters)';
+    return 'Task list name can only contain letters and numbers (no spaces or special characters)';
   }
 
   const normalizedName = name.trim().toLowerCase();
