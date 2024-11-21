@@ -2,6 +2,7 @@
 
 import { Check, Edit, Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -96,16 +97,18 @@ export function TaskContainer({
         ) : (
           <>
             <div className='flex items-center gap-2'>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <CardTitle className='sm:truncate-none max-w-[200px] truncate hover:opacity-80 sm:max-w-none'>
-                    {taskList.name}
-                  </CardTitle>
-                </PopoverTrigger>
-                <PopoverContent className='p-3 text-sm sm:hidden'>
-                  <div className='break-words font-medium'>{taskList.name}</div>
-                </PopoverContent>
-              </Popover>
+              <Link href={`/task/${taskList.id}`}>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <CardTitle className='sm:truncate-none max-w-[200px] truncate hover:opacity-80 sm:max-w-none'>
+                      {taskList.name}
+                    </CardTitle>
+                  </PopoverTrigger>
+                  <PopoverContent className='p-3 text-sm sm:hidden'>
+                    <div className='break-words font-medium'>{taskList.name}</div>
+                  </PopoverContent>
+                </Popover>
+              </Link>
               <Button variant='ghost' size='icon' onClick={() => setIsEditing(true)} className='h-6 w-6 shrink-0'>
                 <Edit className='h-4 w-4' />
               </Button>
