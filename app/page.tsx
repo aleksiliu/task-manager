@@ -11,7 +11,7 @@ export default function TaskManager() {
 
   return (
     <div className='container mt-4 max-w-3xl p-4'>
-      <h1 className='mb-6 text-2xl font-bold'>Advanced Task Manager</h1>
+      <h1 className='mb-6 text-2xl font-bold'>Task Manager</h1>
 
       {error && (
         <div className='mb-4 rounded-md bg-destructive/15 p-4 text-destructive' role='alert'>
