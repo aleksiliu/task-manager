@@ -1,10 +1,9 @@
 'use client';
 
-import { Check, Edit, Trash2 } from 'lucide-react';
+import { Check, Edit, Play, Square, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { Task, TaskStatus } from '@/types';
 
 interface TaskItemProps {
@@ -27,6 +26,32 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
     }
   };
 
+  const getStatusButton = () => {
+    switch (task.status) {
+      case 'todo':
+        return (
+          <Button variant='outline' size='sm' onClick={() => onStatusChange(task.id, 'doing')}>
+            <Play className='mr-1 h-4 w-4' />
+            Start Task
+          </Button>
+        );
+      case 'doing':
+        return (
+          <Button variant='outline' size='sm' onClick={() => onStatusChange(task.id, 'done')}>
+            <Check className='mr-1 h-4 w-4' />
+            Complete Task
+          </Button>
+        );
+      case 'done':
+        return (
+          <div className='flex items-center'>
+            <Check className='mr-1 h-4 w-4' />
+            Completed
+          </div>
+        );
+    }
+  };
+
   return (
     <li className='flex items-center justify-between rounded-md bg-secondary p-3 transition-colors hover:bg-secondary/80'>
       {isEditing ? (
@@ -37,25 +62,22 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
           autoFocus
         />
       ) : (
-        <span className='mr-2 flex-grow truncate'>{task.description}</span>
+        <span className={`mr-2 flex-grow truncate ${task.status === 'done' ? 'line-through' : ''}`}>
+          {task.description}
+        </span>
       )}
       <div className='flex items-center space-x-2'>
-        <Select value={task.status} onValueChange={(value: TaskStatus) => onStatusChange(task.id, value)}>
-          <SelectTrigger className='w-[100px] bg-background'>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value='todo'>Todo</SelectItem>
-            <SelectItem value='doing'>Doing</SelectItem>
-            <SelectItem value='done'>Done</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button variant='ghost' size='icon' onClick={handleEdit}>
-          {isEditing ? <Check className='h-4 w-4' /> : <Edit className='h-4 w-4' />}
-        </Button>
-        <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)}>
-          <Trash2 className='h-4 w-4' />
-        </Button>
+        {getStatusButton()}
+        {task.status !== 'done' && (
+          <>
+            <Button variant='ghost' size='icon' onClick={handleEdit}>
+              {isEditing ? <Check className='h-4 w-4' /> : <Edit className='h-4 w-4' />}
+            </Button>
+            <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)}>
+              <Trash2 className='h-4 w-4' />
+            </Button>
+          </>
+        )}
       </div>
     </li>
   );
