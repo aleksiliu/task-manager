@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
+import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
 import { TaskItem } from './task-item';
 
@@ -32,11 +34,14 @@ export function TaskListComponent({
   const [editedName, setEditedName] = useState(taskList.name);
   const [newTaskDescription, setNewTaskDescription] = useState('');
   const [filter, setFilter] = useState<TaskStatus | 'all'>('all');
+  const { error, validateTaskList, setError } = useFormValidation();
 
   const handleEditName = () => {
     if (isEditing) {
-      onEditName(taskList.id, editedName);
-      setIsEditing(false);
+      if (validateTaskList(editedName, [])) {
+        onEditName(taskList.id, editedName);
+        setIsEditing(false);
+      }
     } else {
       setIsEditing(true);
     }
@@ -56,26 +61,37 @@ export function TaskListComponent({
     <Card className='mb-4'>
       <CardHeader className='flex flex-row items-center justify-between'>
         {isEditing ? (
-          <Input value={editedName} onChange={(e) => setEditedName(e.target.value)} className='mr-2 flex-grow' />
-        ) : (
-          <div className='flex items-center gap-2'>
-            <CardTitle>{taskList.name}</CardTitle>
-            <Button variant='ghost' size='icon' onClick={() => setIsEditing(true)} className='h-6 w-6'>
-              <Edit className='h-4 w-4' />
-            </Button>
+          <div className='flex flex-grow flex-col gap-2'>
+            <div className='flex items-center gap-2'>
+              <Input
+                value={editedName}
+                onChange={(e) => {
+                  setEditedName(e.target.value);
+                  setError(null);
+                }}
+                className={cn('flex-grow', error && 'border-red-500')}
+              />
+              <Button variant='ghost' size='icon' onClick={handleEditName}>
+                <Check className='h-4 w-4' />
+              </Button>
+            </div>
+            {error && <p className='text-sm text-red-500'>{error}</p>}
           </div>
+        ) : (
+          <>
+            <div className='flex items-center gap-2'>
+              <CardTitle>{taskList.name}</CardTitle>
+              <Button variant='ghost' size='icon' onClick={() => setIsEditing(true)} className='h-6 w-6'>
+                <Edit className='h-4 w-4' />
+              </Button>
+            </div>
+            <div className='flex space-x-2'>
+              <Button variant='ghost' size='icon' onClick={() => onDelete(taskList.id)}>
+                <Trash2 className='h-4 w-4' />
+              </Button>
+            </div>
+          </>
         )}
-        <div className='flex space-x-2'>
-          {isEditing ? (
-            <Button variant='ghost' size='icon' onClick={handleEditName}>
-              <Check className='h-4 w-4' />
-            </Button>
-          ) : (
-            <Button variant='ghost' size='icon' onClick={() => onDelete(taskList.id)}>
-              <Trash2 className='h-4 w-4' />
-            </Button>
-          )}
-        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleAddTask} className='mb-4 flex space-x-2'>
