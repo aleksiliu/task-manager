@@ -149,7 +149,7 @@ export function TaskContainer({
             />
           </div>
           <Button type='submit' aria-label='Add new task'>
-            <Plus className='mr-2 h-4 w-4' />
+            <Plus className='h-4 w-4' />
             Add Task
           </Button>
         </form>
