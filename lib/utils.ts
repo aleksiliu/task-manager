@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const TASK_CONSTRAINTS = {
   LIST_NAME: {
-    MIN_LENGTH: 3,
+    MIN_LENGTH: 1,
     MAX_LENGTH: 60,
     PATTERN: /^[\p{L}\p{N}]+$/u
   },

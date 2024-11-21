@@ -63,7 +63,7 @@ export default function TaskManager() {
   return (
     <div className='container mx-auto max-w-3xl p-4'>
       <h1 className='mb-6 text-3xl font-bold'>Advanced Task Manager</h1>
-      <NewTaskListForm onSubmit={addTaskList} />
+      <NewTaskListForm onSubmit={addTaskList} existingNames={taskLists.map((list) => list.name)} />
       {taskLists.map((taskList) => (
         <TaskListComponent
           key={taskList.id}
