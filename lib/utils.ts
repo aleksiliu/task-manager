@@ -17,16 +17,8 @@ export const TASK_CONSTRAINTS = {
 } as const;
 
 export const validateListName = (name: string, existingNames: string[] = []): string | null => {
-  if (!name.trim()) {
-    return 'List name cannot be empty';
-  }
-
-  if (name.length < TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH) {
+  if (name.trim().length < TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH) {
     return `List name must be at least ${TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH} characters`;
-  }
-
-  if (name.length > TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH) {
-    return `List name must be less than ${TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH} characters`;
   }
 
   if (!TASK_CONSTRAINTS.LIST_NAME.PATTERN.test(name)) {
