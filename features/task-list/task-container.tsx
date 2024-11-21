@@ -50,6 +50,7 @@ export function TaskContainer({
     if (newTaskDescription.trim()) {
       onAddTask(taskList.id, newTaskDescription.trim());
       setNewTaskDescription('');
+      setFilter('todo');
     }
   };
 
