@@ -81,11 +81,9 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
       {!isEditing && (
         <div className='flex w-full items-center gap-2 sm:w-auto'>
           <div className='flex-grow sm:flex-grow-0'>{getStatusButton()}</div>
-          {task.status !== 'done' && (
-            <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)} className='h-8 w-8 shrink-0'>
-              <Trash2 className='h-4 w-4' />
-            </Button>
-          )}
+          <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)} className='h-8 w-8 shrink-0'>
+            <Trash2 className='h-4 w-4' />
+          </Button>
         </div>
       )}
     </li>
