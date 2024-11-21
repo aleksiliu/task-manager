@@ -89,24 +89,26 @@ export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPrev
 
       <div className='px-6 pb-4'>
         <div className='space-y-1'>
-          <div className='flex items-center justify-between text-sm'>
-            <div className='flex items-center gap-2'>
-              <span className='text-muted-foreground'>Progress</span>
-              <span className='text-muted-foreground'>
-                ({completedTasks}/{totalTasks} tasks)
-              </span>
+          <Link href={`/task/${taskList.id}`} className='block'>
+            <div className='flex items-center justify-between text-sm'>
+              <div className='flex items-center gap-2'>
+                <span className='text-muted-foreground'>Progress</span>
+                <span className='text-muted-foreground'>
+                  ({completedTasks}/{totalTasks} tasks)
+                </span>
+              </div>
+              <span className='font-medium'>{progress}%</span>
             </div>
-            <span className='font-medium'>{progress}%</span>
-          </div>
-          <div className='h-2 w-full overflow-hidden rounded-full bg-secondary'>
-            <div
-              className={cn('h-full transition-all duration-300', progress === 100 ? 'bg-green-500' : 'bg-primary')}
-              style={{ width: `${progress}%` }}
-            />
-          </div>
+            <div className='h-2 w-full overflow-hidden rounded-full bg-secondary'>
+              <div
+                className={cn('h-full transition-all duration-300', progress === 100 ? 'bg-green-500' : 'bg-primary')}
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </Link>
         </div>
 
-        <div className='mt-4 flex items-center justify-end'>
+        <div className='mt-4 flex items-center justify-center'>
           <Link
             href={`/task/${taskList.id}`}
             className='flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'>
