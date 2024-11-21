@@ -99,7 +99,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
                 <span className='text-muted-foreground'>Progress</span>
                 <span className='text-muted-foreground'>
                   ({completedTasks}/{totalTasks} {completedTasks > 0 ? 'done' : 'tasks'}
-                  {inProgressTasks > 0 && `, ${inProgressTasks} in progress`})
+                  {inProgressTasks > 0 && `, ${inProgressTasks} in doing`})
                 </span>
               </div>
               <span className='font-medium'>{progress}%</span>
