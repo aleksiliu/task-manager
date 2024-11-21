@@ -78,12 +78,21 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
               <Link href={`/task/${taskList.id}`} className='hover:opacity-80'>
                 <CardTitle className='sm:truncate-none max-w-[200px] truncate sm:max-w-none'>{taskList.name}</CardTitle>
               </Link>
-              <Button variant='ghost' size='icon' onClick={() => setIsEditing(true)} className='h-6 w-6 shrink-0'>
+              <Button
+                variant='ghost'
+                size='icon'
+                onClick={() => setIsEditing(true)}
+                className='h-6 w-6 shrink-0'
+                aria-label={`Edit list name: ${taskList.name}`}>
                 <Edit className='h-4 w-4' />
               </Button>
             </div>
             <div className='flex space-x-2'>
-              <Button variant='ghost' size='icon' onClick={() => onDelete(taskList.id)}>
+              <Button
+                variant='ghost'
+                size='icon'
+                onClick={() => onDelete(taskList.id)}
+                aria-label={`Delete list: ${taskList.name}`}>
                 <Trash2 className='h-4 w-4' />
               </Button>
             </div>
