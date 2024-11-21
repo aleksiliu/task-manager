@@ -24,30 +24,41 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
   };
 
   return (
-    <Card className='mb-6'>
+    <Card className='mb-6' role='region' aria-label='Create new task list'>
       <CardHeader>
         <CardTitle>Create New Task List</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className='space-y-2'>
           <div className='flex space-x-2'>
-            <Input
-              type='text'
-              value={newListName}
-              onChange={(e) => {
-                setNewListName(e.target.value);
-                setError(null);
-              }}
-              placeholder='New task list name'
-              className={cn('flex-grow', error && 'border-red-500')}
-              maxLength={60}
-            />
-            <Button type='submit'>
+            <div className='flex-grow'>
+              <label className='sr-only' htmlFor='new-list-name'>
+                New task list name
+              </label>
+              <Input
+                id='new-list-name'
+                type='text'
+                value={newListName}
+                onChange={(e) => {
+                  setNewListName(e.target.value);
+                  setError(null);
+                }}
+                placeholder='New task list name'
+                className={cn('w-full', error && 'border-red-500')}
+                maxLength={60}
+                aria-invalid={error ? 'true' : 'false'}
+              />
+            </div>
+            <Button type='submit' aria-label='Create new list'>
               <Plus className='mr-2 h-4 w-4' />
               Add List
             </Button>
           </div>
-          {error && <p className='text-sm text-red-500'>{error}</p>}
+          {error && (
+            <p role='alert' className='text-sm text-red-500'>
+              {error}
+            </p>
+          )}
         </form>
       </CardContent>
     </Card>

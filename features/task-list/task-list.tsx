@@ -58,24 +58,33 @@ export function TaskListComponent({
   const filteredTasks = taskList.tasks.filter((task) => filter === 'all' || task.status === filter);
 
   return (
-    <Card className='mb-4'>
+    <Card className='mb-4' role='region' aria-label={`Task list: ${taskList.name}`}>
       <CardHeader className='flex flex-row items-center justify-between'>
         {isEditing ? (
           <div className='flex flex-grow flex-col gap-2'>
             <div className='flex items-center gap-2'>
+              <label className='sr-only' htmlFor={`edit-list-${taskList.id}`}>
+                Edit list name
+              </label>
               <Input
+                id={`edit-list-${taskList.id}`}
                 value={editedName}
                 onChange={(e) => {
                   setEditedName(e.target.value);
                   setError(null);
                 }}
                 className={cn('flex-grow', error && 'border-red-500')}
+                aria-invalid={error ? 'true' : 'false'}
               />
-              <Button variant='ghost' size='icon' onClick={handleEditName}>
+              <Button variant='ghost' size='icon' onClick={handleEditName} aria-label='Save list name'>
                 <Check className='h-4 w-4' />
               </Button>
             </div>
-            {error && <p className='text-sm text-red-500'>{error}</p>}
+            {error && (
+              <p role='alert' className='text-sm text-red-500'>
+                {error}
+              </p>
+            )}
           </div>
         ) : (
           <>
@@ -95,25 +104,36 @@ export function TaskListComponent({
       </CardHeader>
       <CardContent>
         <form onSubmit={handleAddTask} className='mb-4 flex space-x-2'>
-          <Input
-            type='text'
-            value={newTaskDescription}
-            onChange={(e) => setNewTaskDescription(e.target.value)}
-            placeholder='Add a new task'
-            className='flex-grow'
-          />
-          <Button type='submit'>
+          <div className='flex-grow'>
+            <label className='sr-only' htmlFor={`new-task-${taskList.id}`}>
+              Add new task
+            </label>
+            <Input
+              id={`new-task-${taskList.id}`}
+              type='text'
+              value={newTaskDescription}
+              onChange={(e) => setNewTaskDescription(e.target.value)}
+              placeholder='Add a new task'
+              className='w-full'
+            />
+          </div>
+          <Button type='submit' aria-label='Add new task'>
             <Plus className='mr-2 h-4 w-4' />
             Add Task
           </Button>
         </form>
 
         {taskList.tasks.length === 0 ? (
-          <p className='text-center text-muted-foreground'>No tasks yet. Add your first task above!</p>
+          <p className='text-center text-muted-foreground' role='status'>
+            No tasks yet. Add your first task above!
+          </p>
         ) : (
           <>
             {taskList.tasks.length >= 2 && (
               <div className='mb-4'>
+                <label className='sr-only' htmlFor={`filter-${taskList.id}`}>
+                  Filter tasks
+                </label>
                 <Select value={filter} onValueChange={(value: TaskStatus | 'all') => setFilter(value)}>
                   <SelectTrigger className='w-[180px]'>
                     <SelectValue placeholder='Filter tasks' />
@@ -127,7 +147,7 @@ export function TaskListComponent({
                 </Select>
               </div>
             )}
-            <ul className='space-y-2'>
+            <ul className='space-y-2' role='list' aria-label='Task list'>
               {filteredTasks.map((task) => (
                 <TaskItem
                   key={task.id}
