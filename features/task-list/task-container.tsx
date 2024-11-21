@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { cn } from '@/lib/utils';
+import { TASK_CONSTRAINTS, cn } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
 import { TaskItem } from './task-item';
@@ -81,7 +81,7 @@ export function TaskContainer({
                     handleSubmit();
                   }
                 }}
-                maxLength={60}
+                maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
                 className={cn('flex-grow', error && 'border-red-500')}
                 aria-invalid={error ? 'true' : 'false'}
               />

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
+import { TASK_CONSTRAINTS, cn } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 
 interface NewTaskListFormProps {
@@ -45,7 +45,7 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
                 }}
                 placeholder='New task list name'
                 className={cn('w-full', error && 'border-red-500')}
-                maxLength={60}
+                maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
                 aria-invalid={error ? 'true' : 'false'}
               />
             </div>

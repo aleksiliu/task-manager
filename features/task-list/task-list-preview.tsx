@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
+import { TASK_CONSTRAINTS, cn } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList } from '@/types';
 
@@ -57,7 +57,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
                     handleSubmit();
                   }
                 }}
-                maxLength={60}
+                maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
                 className={cn('flex-grow', error && 'border-red-500')}
                 aria-invalid={error ? 'true' : 'false'}
               />
