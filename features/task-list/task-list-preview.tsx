@@ -91,7 +91,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPrev
         <div className='space-y-1'>
           <Link href={`/task/${taskList.id}`} className='block'>
             <div className='flex items-center justify-between text-sm'>
-              <div className='flex items-center gap-2'>
+              <div className='mb-2 flex items-center gap-2'>
                 <span className='text-muted-foreground'>Progress</span>
                 <span className='text-muted-foreground'>
                   ({completedTasks}/{totalTasks} tasks)
