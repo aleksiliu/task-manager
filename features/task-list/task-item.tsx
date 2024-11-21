@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Edit, Play, Square, Trash2 } from 'lucide-react';
+import { Check, Edit, Play, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

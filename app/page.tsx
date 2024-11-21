@@ -28,7 +28,12 @@ export default function TaskManager() {
   const addTask = (listId: number, description: string) => {
     setTaskLists(
       taskLists.map((list) =>
-        list.id === listId ? { ...list, tasks: [...list.tasks, { id: Date.now(), description, status: 'todo' }] } : list
+        list.id === listId
+          ? {
+              ...list,
+              tasks: [{ id: Date.now(), description, status: 'todo' }, ...list.tasks]
+            }
+          : list
       )
     );
   };
