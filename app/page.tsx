@@ -3,21 +3,11 @@
 import { ClipboardList, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTaskOperations } from '@/hooks/use-task-operations';
-import { TaskContainer } from '@/features/task-list/task-container';
 import { NewTaskListForm } from '@/features/task-list/task-list-form';
+import { TaskListPreview } from '@/features/task-list/task-list-preview';
 
 export default function TaskManager() {
-  const {
-    taskLists,
-    error,
-    addTaskList,
-    editTaskListName,
-    deleteTaskList,
-    addTask,
-    editTask,
-    deleteTask,
-    changeTaskStatus
-  } = useTaskOperations();
+  const { taskLists, error, addTaskList, editTaskListName, deleteTaskList } = useTaskOperations();
 
   return (
     <div className='container mt-4 max-w-3xl p-4'>
@@ -31,15 +21,11 @@ export default function TaskManager() {
 
       <NewTaskListForm onSubmit={addTaskList} existingNames={taskLists.map((list) => list.name)} />
       {taskLists.map((taskList) => (
-        <TaskContainer
+        <TaskListPreview
           key={taskList.id}
           taskList={taskList}
           onEditName={editTaskListName}
           onDelete={deleteTaskList}
-          onAddTask={addTask}
-          onEditTask={editTask}
-          onDeleteTask={deleteTask}
-          onChangeTaskStatus={changeTaskStatus}
         />
       ))}
       {taskLists.length === 0 && (
