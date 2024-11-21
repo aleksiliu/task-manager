@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Edit, Trash2 } from 'lucide-react';
+import { ArrowRight, Check, Edit, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -104,6 +104,15 @@ export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPrev
               style={{ width: `${progress}%` }}
             />
           </div>
+        </div>
+
+        <div className='mt-4 flex items-center justify-end'>
+          <Link
+            href={`/task/${taskList.id}`}
+            className='flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'>
+            View tasks
+            <ArrowRight className='h-4 w-4' />
+          </Link>
         </div>
       </div>
     </Card>
