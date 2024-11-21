@@ -91,30 +91,39 @@ export function TaskListComponent({
             Add Task
           </Button>
         </form>
-        <div className='mb-4'>
-          <Select value={filter} onValueChange={(value: TaskStatus | 'all') => setFilter(value)}>
-            <SelectTrigger className='w-[180px]'>
-              <SelectValue placeholder='Filter tasks' />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='all'>All</SelectItem>
-              <SelectItem value='todo'>Todo</SelectItem>
-              <SelectItem value='doing'>Doing</SelectItem>
-              <SelectItem value='done'>Done</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <ul className='space-y-2'>
-          {filteredTasks.map((task) => (
-            <TaskItem
-              key={task.id}
-              task={task}
-              onEdit={(taskId, description) => onEditTask(taskList.id, taskId, description)}
-              onDelete={(taskId) => onDeleteTask(taskList.id, taskId)}
-              onStatusChange={(taskId, status) => onChangeTaskStatus(taskList.id, taskId, status)}
-            />
-          ))}
-        </ul>
+
+        {taskList.tasks.length === 0 ? (
+          <p className='text-center text-muted-foreground'>No tasks yet. Add your first task above!</p>
+        ) : (
+          <>
+            {taskList.tasks.length >= 2 && (
+              <div className='mb-4'>
+                <Select value={filter} onValueChange={(value: TaskStatus | 'all') => setFilter(value)}>
+                  <SelectTrigger className='w-[180px]'>
+                    <SelectValue placeholder='Filter tasks' />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='all'>All</SelectItem>
+                    <SelectItem value='todo'>Todo</SelectItem>
+                    <SelectItem value='doing'>Doing</SelectItem>
+                    <SelectItem value='done'>Done</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+            <ul className='space-y-2'>
+              {filteredTasks.map((task) => (
+                <TaskItem
+                  key={task.id}
+                  task={task}
+                  onEdit={(taskId, description) => onEditTask(taskList.id, taskId, description)}
+                  onDelete={(taskId) => onDeleteTask(taskList.id, taskId)}
+                  onStatusChange={(taskId, status) => onChangeTaskStatus(taskList.id, taskId, status)}
+                />
+              ))}
+            </ul>
+          </>
+        )}
       </CardContent>
     </Card>
   );
