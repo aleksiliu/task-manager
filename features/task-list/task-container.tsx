@@ -148,27 +148,25 @@ export function TaskContainer({
           </p>
         ) : (
           <>
-            {taskList.tasks.length >= 2 && (
-              <div className='mb-4'>
-                <Tabs
-                  defaultValue='todo'
-                  value={filter}
-                  onValueChange={(value: string) => setFilter(value as TaskStatus)}
-                  className='w-full'>
-                  <TabsList className='grid w-full grid-cols-3'>
-                    <TabsTrigger value='todo'>
-                      Todo ({taskList.tasks.filter((t) => t.status === 'todo').length})
-                    </TabsTrigger>
-                    <TabsTrigger value='doing'>
-                      Doing ({taskList.tasks.filter((t) => t.status === 'doing').length})
-                    </TabsTrigger>
-                    <TabsTrigger value='done'>
-                      Done ({taskList.tasks.filter((t) => t.status === 'done').length})
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              </div>
-            )}
+            <div className='mb-4'>
+              <Tabs
+                defaultValue='todo'
+                value={filter}
+                onValueChange={(value: string) => setFilter(value as TaskStatus)}
+                className='w-full'>
+                <TabsList className='grid w-full grid-cols-3'>
+                  <TabsTrigger value='todo'>
+                    Todo ({taskList.tasks.filter((t) => t.status === 'todo').length})
+                  </TabsTrigger>
+                  <TabsTrigger value='doing'>
+                    Doing ({taskList.tasks.filter((t) => t.status === 'doing').length})
+                  </TabsTrigger>
+                  <TabsTrigger value='done'>
+                    Done ({taskList.tasks.filter((t) => t.status === 'done').length})
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
 
             {filteredTasks.length > 0 ? (
               <ul className='space-y-2' role='list' aria-label='Task list'>
