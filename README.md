@@ -2,6 +2,10 @@
 
 A Next.js application for managing tasks and task lists.
 
+## Live Demo
+
+Visit the live application: [Task Manager](https://task-manager-one-tawny.vercel.app/)
+
 ## Features
 
 - Create and manage multiple task lists
