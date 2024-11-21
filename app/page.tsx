@@ -1,5 +1,7 @@
 'use client';
 
+import { ClipboardList, Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { TaskListComponent } from '@/features/task-list/task-list';
 import { NewTaskListForm } from '@/features/task-list/task-list-form';
@@ -89,7 +91,19 @@ export default function TaskManager() {
         />
       ))}
       {taskLists.length === 0 && (
-        <p className='text-center text-muted-foreground'>No task lists yet. Create your first list above!</p>
+        <div className='flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-neutral-200 bg-neutral-50/50 p-8 text-center'>
+          <div className='rounded-full bg-neutral-100 p-3'>
+            <ClipboardList className='h-6 w-6 text-neutral-500' />
+          </div>
+          <div className='space-y-1'>
+            <h3 className='font-semibold text-neutral-900'>No tasks yet</h3>
+            <p className='text-sm text-neutral-500'>Create your first task list to get started</p>
+          </div>
+          <Button onClick={() => document.querySelector('input')?.focus()} variant='outline' className='mt-2'>
+            <Plus className='mr-2 h-4 w-4' />
+            Create task list
+          </Button>
+        </div>
       )}
     </div>
   );
