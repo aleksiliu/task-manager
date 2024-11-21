@@ -24,6 +24,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
 
   const totalTasks = taskList.tasks.length;
   const completedTasks = taskList.tasks.filter((task) => task.status === 'done').length;
+  const inProgressTasks = taskList.tasks.filter((task) => task.status === 'doing').length;
   const progress = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
 
   const handleSubmit = () => {
@@ -97,7 +98,8 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
               <div className='flex items-center gap-2'>
                 <span className='text-muted-foreground'>Progress</span>
                 <span className='text-muted-foreground'>
-                  ({completedTasks}/{totalTasks} tasks)
+                  ({completedTasks}/{totalTasks} {completedTasks > 0 ? 'done' : 'tasks'}
+                  {inProgressTasks > 0 && `, ${inProgressTasks} in progress`})
                 </span>
               </div>
               <span className='font-medium'>{progress}%</span>
