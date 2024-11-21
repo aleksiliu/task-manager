@@ -11,7 +11,7 @@ import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
 import { TaskItem } from './task-item';
 
-interface TaskListProps {
+interface TaskContainerProps {
   taskList: TaskList;
   onEditName: (id: number, name: string) => void;
   onDelete: (id: number) => void;
@@ -21,7 +21,7 @@ interface TaskListProps {
   onChangeTaskStatus: (listId: number, taskId: number, status: TaskStatus) => void;
 }
 
-export function TaskListComponent({
+export function TaskContainer({
   taskList,
   onEditName,
   onDelete,
@@ -29,7 +29,7 @@ export function TaskListComponent({
   onEditTask,
   onDeleteTask,
   onChangeTaskStatus
-}: TaskListProps) {
+}: TaskContainerProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(taskList.name);
   const [newTaskDescription, setNewTaskDescription] = useState('');
@@ -78,6 +78,7 @@ export function TaskListComponent({
                     handleSubmit();
                   }
                 }}
+                maxLength={60}
                 className={cn('flex-grow', error && 'border-red-500')}
                 aria-invalid={error ? 'true' : 'false'}
               />

@@ -3,7 +3,7 @@
 import { ClipboardList, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLocalStorage } from '@/hooks/use-local-storage';
-import { TaskListComponent } from '@/features/task-list/task-list';
+import { TaskContainer } from '@/features/task-list/task-container';
 import { NewTaskListForm } from '@/features/task-list/task-list-form';
 import type { TaskStatus } from '@/types';
 
@@ -79,7 +79,7 @@ export default function TaskManager() {
 
       <NewTaskListForm onSubmit={addTaskList} existingNames={taskLists.map((list) => list.name)} />
       {taskLists.map((taskList) => (
-        <TaskListComponent
+        <TaskContainer
           key={taskList.id}
           taskList={taskList}
           onEditName={editTaskListName}
