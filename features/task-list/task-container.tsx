@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
@@ -33,7 +33,7 @@ export function TaskContainer({
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(taskList.name);
   const [newTaskDescription, setNewTaskDescription] = useState('');
-  const [filter, setFilter] = useState<TaskStatus | 'all'>('all');
+  const [filter, setFilter] = useState<TaskStatus>('todo');
   const { error, validateTaskList, setError } = useFormValidation();
 
   const handleSubmit = () => {
@@ -51,7 +51,7 @@ export function TaskContainer({
     }
   };
 
-  const filteredTasks = taskList.tasks.filter((task) => filter === 'all' || task.status === filter);
+  const filteredTasks = taskList.tasks.filter((task) => task.status === filter);
 
   return (
     <Card
@@ -137,20 +137,23 @@ export function TaskContainer({
           <>
             {taskList.tasks.length >= 2 && (
               <div className='mb-4'>
-                <label className='sr-only' htmlFor={`filter-${taskList.id}`}>
-                  Filter tasks
-                </label>
-                <Select value={filter} onValueChange={(value: TaskStatus | 'all') => setFilter(value)}>
-                  <SelectTrigger className='w-[180px]'>
-                    <SelectValue placeholder='Filter tasks' />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value='all'>All</SelectItem>
-                    <SelectItem value='todo'>Todo</SelectItem>
-                    <SelectItem value='doing'>Doing</SelectItem>
-                    <SelectItem value='done'>Done</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Tabs
+                  defaultValue='todo'
+                  value={filter}
+                  onValueChange={(value: string) => setFilter(value as TaskStatus)}
+                  className='w-full'>
+                  <TabsList className='grid w-full grid-cols-3'>
+                    <TabsTrigger value='todo'>
+                      Todo ({taskList.tasks.filter((t) => t.status === 'todo').length})
+                    </TabsTrigger>
+                    <TabsTrigger value='doing'>
+                      Doing ({taskList.tasks.filter((t) => t.status === 'doing').length})
+                    </TabsTrigger>
+                    <TabsTrigger value='done'>
+                      Done ({taskList.tasks.filter((t) => t.status === 'done').length})
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
             )}
 
