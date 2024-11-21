@@ -69,7 +69,7 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
           </div>
         ) : (
           <div className='flex w-full items-center gap-2'>
-            <span className={`truncate ${task.status === 'done' ? 'line-through' : ''}`}>{task.description}</span>
+            <span className={`break-words ${task.status === 'done' ? 'line-through' : ''}`}>{task.description}</span>
             {task.status !== 'done' && (
               <Button variant='ghost' size='icon' onClick={handleEdit} className='h-8 w-8 shrink-0'>
                 <Edit className='h-4 w-4' />
