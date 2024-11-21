@@ -115,7 +115,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
             </div>
             <div className='mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary'>
               <div
-                className={cn('h-full transition-all duration-300', progress === 100 ? 'bg-green-500' : 'bg-primary')}
+                className={cn('h-full transition-all duration-300', progress === 100 ? 'bg-green-400' : 'bg-primary')}
                 style={{ width: `${progress}%` }}
               />
             </div>
