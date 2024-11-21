@@ -31,7 +31,7 @@ export const validateListName = (name: string, existingNames: string[] = []): st
   }
 
   if (!TASK_CONSTRAINTS.LIST_NAME.PATTERN.test(name)) {
-    return 'List name can only contain letters and numbers';
+    return 'List name can only contain letters and numbers (no spaces or special characters)';
   }
 
   if (existingNames.includes(name.trim())) {
