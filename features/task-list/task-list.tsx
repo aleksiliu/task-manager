@@ -36,14 +36,10 @@ export function TaskListComponent({
   const [filter, setFilter] = useState<TaskStatus | 'all'>('all');
   const { error, validateTaskList, setError } = useFormValidation();
 
-  const handleEditName = () => {
-    if (isEditing) {
-      if (validateTaskList(editedName, [])) {
-        onEditName(taskList.id, editedName);
-        setIsEditing(false);
-      }
-    } else {
-      setIsEditing(true);
+  const handleSubmit = () => {
+    if (validateTaskList(editedName, [])) {
+      onEditName(taskList.id, editedName);
+      setIsEditing(false);
     }
   };
 
@@ -76,10 +72,16 @@ export function TaskListComponent({
                   setEditedName(e.target.value);
                   setError(null);
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSubmit();
+                  }
+                }}
                 className={cn('flex-grow', error && 'border-red-500')}
                 aria-invalid={error ? 'true' : 'false'}
               />
-              <Button variant='ghost' size='icon' onClick={handleEditName} aria-label='Save list name'>
+              <Button variant='ghost' size='icon' onClick={handleSubmit} aria-label='Save list name'>
                 <Check className='h-4 w-4' />
               </Button>
             </div>

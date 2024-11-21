@@ -17,6 +17,13 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
   const [isEditing, setIsEditing] = useState(false);
   const [editedDescription, setEditedDescription] = useState(task.description);
 
+  const handleSubmit = () => {
+    if (editedDescription.trim()) {
+      onEdit(task.id, editedDescription);
+      setIsEditing(false);
+    }
+  };
+
   const handleEdit = () => {
     if (isEditing) {
       onEdit(task.id, editedDescription);
@@ -60,13 +67,19 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
             <Input
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSubmit();
+                }
+              }}
               className='flex-grow'
               autoFocus
             />
             <Button
               variant='ghost'
               size='icon'
-              onClick={handleEdit}
+              onClick={handleSubmit}
               className='h-8 w-8 shrink-0'
               aria-label='Save task'>
               <Check className='h-4 w-4' />
