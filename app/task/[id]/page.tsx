@@ -45,6 +45,7 @@ export default function SingleTaskList({ params }: { params: Promise<{ id: strin
         onEditTask={editTask}
         onDeleteTask={deleteTask}
         onChangeTaskStatus={changeTaskStatus}
+        existingNames={taskLists.map((list) => list.name)}
       />
     </div>
   );

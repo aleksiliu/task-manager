@@ -21,6 +21,7 @@ interface TaskContainerProps {
   onEditTask: (listId: number, taskId: number, description: string) => void;
   onDeleteTask: (listId: number, taskId: number) => void;
   onChangeTaskStatus: (listId: number, taskId: number, status: TaskStatus) => void;
+  existingNames: string[];
 }
 
 export function TaskContainer({
@@ -30,7 +31,8 @@ export function TaskContainer({
   onAddTask,
   onEditTask,
   onDeleteTask,
-  onChangeTaskStatus
+  onChangeTaskStatus,
+  existingNames
 }: TaskContainerProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(taskList.name);
@@ -39,7 +41,7 @@ export function TaskContainer({
   const { error, validateTaskList, setError } = useFormValidation();
 
   const handleSubmit = () => {
-    if (validateTaskList(editedName, [])) {
+    if (validateTaskList(editedName, existingNames)) {
       onEditName(taskList.id, editedName);
       setIsEditing(false);
     }
