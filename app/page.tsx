@@ -11,7 +11,7 @@ export default function TaskManager() {
 
   const addTaskList = (name: string) => {
     if (name.trim() && name.length <= 60 && !taskLists.some((list) => list.name === name.trim())) {
-      setTaskLists([...taskLists, { id: Date.now(), name: name.trim(), tasks: [] }]);
+      setTaskLists([{ id: Date.now(), name: name.trim(), tasks: [] }, ...taskLists]);
     }
   };
 
