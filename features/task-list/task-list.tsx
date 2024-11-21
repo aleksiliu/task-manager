@@ -58,7 +58,10 @@ export function TaskListComponent({
   const filteredTasks = taskList.tasks.filter((task) => filter === 'all' || task.status === filter);
 
   return (
-    <Card className='mb-4' role='region' aria-label={`Task list: ${taskList.name}`}>
+    <Card
+      className='mb-4 shadow-lg transition-all hover:shadow-xl'
+      role='region'
+      aria-label={`Task list: ${taskList.name}`}>
       <CardHeader className='flex flex-row items-center justify-between'>
         {isEditing ? (
           <div className='flex flex-grow flex-col gap-2'>
