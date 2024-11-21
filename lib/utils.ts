@@ -34,7 +34,7 @@ export const validateListName = (name: string, existingNames: string[] = []): st
   }
 
   if (existingNames.includes(name.trim())) {
-    return 'A list with this name already exists';
+    return 'A task list with this name already exists';
   }
 
   return null;
