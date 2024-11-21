@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { TaskListComponent } from '@/features/task-list/task-list';
 import { NewTaskListForm } from '@/features/task-list/task-list-form';
+import { mockData } from '@/mocks/taskData';
 import type { TaskList, TaskStatus } from '@/types';
 
 export default function TaskManager() {
-  const [taskLists, setTaskLists] = useState<TaskList[]>([]);
+  const [taskLists, setTaskLists] = useState<TaskList[]>(mockData);
 
   const addTaskList = (name: string) => {
     if (name.trim() && name.length <= 60 && !taskLists.some((list) => list.name === name.trim())) {
