@@ -4,6 +4,7 @@ import { Check, Edit, Play, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 import type { Task, TaskStatus } from '@/types';
 
 interface TaskItemProps {
@@ -87,7 +88,14 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
           </div>
         ) : (
           <div className='flex w-full items-center gap-2'>
-            <span className={`break-words ${task.status === 'done' ? 'line-through' : ''}`}>{task.description}</span>
+            <span
+              className={cn(
+                'hyphens-auto break-all',
+                'max-w-[calc(100%-2rem)]',
+                task.status === 'done' && 'line-through'
+              )}>
+              {task.description}
+            </span>
             {task.status !== 'done' && (
               <Button
                 variant='ghost'
