@@ -1,6 +1,6 @@
 # Task Manager
 
-A Next.js application for managing tasks and task lists with validation and testing.
+A Next.js application for managing tasks and task lists.
 
 ## Features
 
@@ -8,6 +8,7 @@ A Next.js application for managing tasks and task lists with validation and test
 - Add, edit, and delete tasks
 - Change task status (todo, doing, done)
 - Form validation for task lists and tasks
+- Real-time persistence with localStorage
 
 ## Prerequisites
 
