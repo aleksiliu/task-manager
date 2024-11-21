@@ -26,6 +26,7 @@ export default function TaskManager() {
           taskList={taskList}
           onEditName={editTaskListName}
           onDelete={deleteTaskList}
+          existingNames={taskLists.map((list) => list.name)}
         />
       ))}
       {taskLists.length === 0 && (

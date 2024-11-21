@@ -14,9 +14,10 @@ interface TaskListPreviewProps {
   taskList: TaskList;
   onEditName: (id: number, name: string) => void;
   onDelete: (id: number) => void;
+  existingNames: string[];
 }
 
-export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPreviewProps) {
+export function TaskListPreview({ taskList, onEditName, onDelete, existingNames }: TaskListPreviewProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(taskList.name);
   const { error, validateTaskList, setError } = useFormValidation();
@@ -26,7 +27,9 @@ export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPrev
   const progress = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
 
   const handleSubmit = () => {
-    if (validateTaskList(editedName, [])) {
+    const otherNames = existingNames.filter((name) => name !== taskList.name);
+
+    if (validateTaskList(editedName, otherNames)) {
       onEditName(taskList.id, editedName);
       setIsEditing(false);
     }
