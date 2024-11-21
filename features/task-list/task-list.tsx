@@ -59,7 +59,7 @@ export function TaskListComponent({
 
   return (
     <Card
-      className='mb-4 shadow-lg transition-all hover:shadow-xl'
+      className='mb-4 shadow-md transition-all hover:shadow-lg'
       role='region'
       aria-label={`Task list: ${taskList.name}`}>
       <CardHeader className='flex flex-row items-center justify-between'>
