@@ -91,7 +91,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPrev
         <div className='space-y-1'>
           <Link href={`/task/${taskList.id}`} className='block'>
             <div className='flex items-center justify-between text-sm'>
-              <div className='mb-2 flex items-center gap-2'>
+              <div className='flex items-center gap-2'>
                 <span className='text-muted-foreground'>Progress</span>
                 <span className='text-muted-foreground'>
                   ({completedTasks}/{totalTasks} tasks)
@@ -99,7 +99,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPrev
               </div>
               <span className='font-medium'>{progress}%</span>
             </div>
-            <div className='h-2 w-full overflow-hidden rounded-full bg-secondary'>
+            <div className='mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary'>
               <div
                 className={cn('h-full transition-all duration-300', progress === 100 ? 'bg-green-500' : 'bg-primary')}
                 style={{ width: `${progress}%` }}
@@ -112,8 +112,17 @@ export function TaskListPreview({ taskList, onEditName, onDelete }: TaskListPrev
           <Link
             href={`/task/${taskList.id}`}
             className='flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'>
-            View tasks
-            <ArrowRight className='h-4 w-4' />
+            {totalTasks === 0 ? (
+              <>
+                Add tasks
+                <ArrowRight className='h-4 w-4' />
+              </>
+            ) : (
+              <>
+                View tasks
+                <ArrowRight className='h-4 w-4' />
+              </>
+            )}
           </Link>
         </div>
       </div>
