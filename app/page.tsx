@@ -6,7 +6,7 @@ import { NewTaskListForm } from '@/features/task-list/task-list-form';
 import type { TaskStatus } from '@/types';
 
 export default function TaskManager() {
-  const [taskLists, setTaskLists] = useLocalStorage();
+  const [taskLists, setTaskLists, error] = useLocalStorage();
 
   const addTaskList = (name: string) => {
     if (name.trim() && name.length <= 60 && !taskLists.some((list) => list.name === name.trim())) {
@@ -68,6 +68,13 @@ export default function TaskManager() {
   return (
     <div className='container mx-auto max-w-3xl p-4'>
       <h1 className='mb-6 text-3xl font-bold'>Advanced Task Manager</h1>
+
+      {error && (
+        <div className='mb-4 rounded-md bg-destructive/15 p-4 text-destructive' role='alert'>
+          <p>{error}</p>
+        </div>
+      )}
+
       <NewTaskListForm onSubmit={addTaskList} existingNames={taskLists.map((list) => list.name)} />
       {taskLists.map((taskList) => (
         <TaskListComponent
@@ -81,6 +88,9 @@ export default function TaskManager() {
           onChangeTaskStatus={changeTaskStatus}
         />
       ))}
+      {taskLists.length === 0 && (
+        <p className='text-center text-muted-foreground'>No task lists yet. Create your first list above!</p>
+      )}
     </div>
   );
 }

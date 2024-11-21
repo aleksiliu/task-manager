@@ -2,23 +2,33 @@ import { useEffect, useState } from 'react';
 import { storage } from '@/lib/storage';
 import { TaskList } from '@/types';
 
-export function useLocalStorage(initialValue: TaskList[] = []) {
-  const [taskLists, setTaskLists] = useState<TaskList[]>(initialValue);
+export function useLocalStorage() {
+  const [taskLists, setTaskLists] = useState<TaskList[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setIsClient(true);
-    const stored = storage.load();
-    if (stored.length > 0) {
+    try {
+      setIsClient(true);
+      const stored = storage.load();
       setTaskLists(stored);
+      setError(null);
+    } catch {
+      setError('Failed to load your tasks. Please refresh the page.');
+      setTaskLists([]);
     }
   }, []);
 
   useEffect(() => {
     if (isClient) {
-      storage.save(taskLists);
+      try {
+        storage.save(taskLists);
+        setError(null);
+      } catch {
+        setError('Failed to save your changes. Please check your browser settings.');
+      }
     }
   }, [taskLists, isClient]);
 
-  return [taskLists, setTaskLists] as const;
+  return [taskLists, setTaskLists, error] as const;
 }
