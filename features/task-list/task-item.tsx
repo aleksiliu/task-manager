@@ -54,31 +54,40 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
 
   return (
     <li className='flex items-center justify-between rounded-md bg-secondary p-3 transition-colors hover:bg-secondary/80'>
-      {isEditing ? (
-        <Input
-          value={editedDescription}
-          onChange={(e) => setEditedDescription(e.target.value)}
-          className='mr-2 flex-grow'
-          autoFocus
-        />
-      ) : (
-        <span className={`mr-2 flex-grow truncate ${task.status === 'done' ? 'line-through' : ''}`}>
-          {task.description}
-        </span>
-      )}
-      <div className='flex items-center space-x-2'>
-        {getStatusButton()}
-        {task.status !== 'done' && (
-          <>
-            <Button variant='ghost' size='icon' onClick={handleEdit}>
-              {isEditing ? <Check className='h-4 w-4' /> : <Edit className='h-4 w-4' />}
+      <div className='mr-2 flex flex-grow items-center'>
+        {isEditing ? (
+          <div className='flex flex-grow items-center gap-2'>
+            <Input
+              value={editedDescription}
+              onChange={(e) => setEditedDescription(e.target.value)}
+              className='flex-grow'
+              autoFocus
+            />
+            <Button variant='ghost' size='icon' onClick={handleEdit} className='h-6 w-6'>
+              <Check className='h-4 w-4' />
             </Button>
+          </div>
+        ) : (
+          <div className='flex flex-grow items-center gap-2'>
+            <span className={`truncate ${task.status === 'done' ? 'line-through' : ''}`}>{task.description}</span>
+            {task.status !== 'done' && (
+              <Button variant='ghost' size='icon' onClick={handleEdit} className='h-6 w-6'>
+                <Edit className='h-4 w-4' />
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
+      {!isEditing && (
+        <div className='flex items-center space-x-2'>
+          {getStatusButton()}
+          {task.status !== 'done' && (
             <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)}>
               <Trash2 className='h-4 w-4' />
             </Button>
-          </>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </li>
   );
 }
