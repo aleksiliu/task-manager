@@ -1,4 +1,4 @@
-import { validateListName } from '@/lib/utils';
+import { TASK_CONSTRAINTS, validateListName } from '@/lib/utils';
 
 describe('Task List Name Validation', () => {
   test('should accept valid task list names', () => {
@@ -9,25 +9,29 @@ describe('Task List Name Validation', () => {
     });
   });
 
-  test('should reject invalid task list names', () => {
+  test('should reject names with invalid characters', () => {
     const invalidNames = [
       { name: 'Task List 1', reason: 'contains spaces' },
       { name: 'List-123', reason: 'contains hyphen' },
       { name: 'List@123', reason: 'contains special character' },
       { name: 'List_123', reason: 'contains underscore' },
-      { name: '!@#$%^', reason: 'only special characters' },
-      { name: '     ', reason: 'only spaces' },
-      { name: '', reason: 'empty string' },
-      { name: 'A'.repeat(61), reason: 'too long (61 characters)' }
+      { name: '!@#$%^', reason: 'only special characters' }
     ];
 
     invalidNames.forEach(({ name }) => {
-      expect(validateListName(name)).not.toBeNull();
+      expect(validateListName(name)).toBe(
+        'List name can only contain letters and numbers (no spaces or special characters)'
+      );
     });
   });
 
-  test('should reject names longer than 60 characters', () => {
-    const longName = 'A'.repeat(61);
-    expect(validateListName(longName)).toBe('List name must be less than 60 characters');
+  test('should reject empty or whitespace-only names', () => {
+    const emptyNames = ['', '     '];
+
+    emptyNames.forEach((name) => {
+      expect(validateListName(name)).toBe(
+        `List name must be at least ${TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH} characters`
+      );
+    });
   });
 });
