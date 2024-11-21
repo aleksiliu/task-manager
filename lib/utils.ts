@@ -25,7 +25,10 @@ export const validateListName = (name: string, existingNames: string[] = []): st
     return 'List name can only contain letters and numbers (no spaces or special characters)';
   }
 
-  if (existingNames.includes(name.trim())) {
+  const normalizedName = name.trim().toLowerCase();
+  const normalizedExistingNames = existingNames.map((n) => n.toLowerCase());
+
+  if (normalizedExistingNames.includes(normalizedName)) {
     return 'A task list with this name already exists';
   }
 

@@ -5,14 +5,20 @@ export function useTaskOperations() {
   const [taskLists, setTaskLists, error] = useLocalStorage();
 
   const addTaskList = (name: string) => {
-    if (name.trim() && name.length <= 60 && !taskLists.some((list) => list.name === name.trim())) {
-      setTaskLists([{ id: Date.now(), name: name.trim(), tasks: [] }, ...taskLists]);
+    const normalizedName = name.trim();
+    const exists = taskLists.some((list) => list.name.toLowerCase() === normalizedName.toLowerCase());
+
+    if (normalizedName && normalizedName.length <= 60 && !exists) {
+      setTaskLists([{ id: Date.now(), name: normalizedName, tasks: [] }, ...taskLists]);
     }
   };
 
   const editTaskListName = (id: number, name: string) => {
-    if (name.trim() && name.length <= 60 && !taskLists.some((list) => list.name === name.trim())) {
-      setTaskLists(taskLists.map((list) => (list.id === id ? { ...list, name: name.trim() } : list)));
+    const normalizedName = name.trim();
+    const exists = taskLists.some((list) => list.id !== id && list.name.toLowerCase() === normalizedName.toLowerCase());
+
+    if (normalizedName && normalizedName.length <= 60 && !exists) {
+      setTaskLists(taskLists.map((list) => (list.id === id ? { ...list, name: normalizedName } : list)));
     }
   };
 

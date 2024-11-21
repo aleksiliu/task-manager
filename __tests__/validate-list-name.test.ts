@@ -25,6 +25,11 @@ describe('Task List Name Validation', () => {
     });
   });
 
+  test('should handle duplicate names with different casing', () => {
+    const existingNames = ['TaskList1'];
+    expect(validateListName('tasklist1', existingNames)).toBe('A task list with this name already exists');
+  });
+
   test('should reject empty or whitespace-only names', () => {
     const emptyNames = ['', '     '];
 
