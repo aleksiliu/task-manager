@@ -98,7 +98,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
               <div className='flex items-center gap-2'>
                 <span className='text-muted-foreground'>Progress</span>
                 <span className='text-muted-foreground'>
-                  ({completedTasks}/{totalTasks} tasks done
+                  ({completedTasks}/{totalTasks} done
                   {inProgressTasks > 0 && `, ${inProgressTasks} in doing`})
                 </span>
               </div>
