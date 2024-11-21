@@ -20,7 +20,7 @@ A Next.js application for managing tasks and task lists.
 1. Clone the repository:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/aleksiliu/task-manager.git
 cd task-manager
 ```
 
@@ -42,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ## Testing
 
-Run the test suite:
+Run the tests
 
 ```bash
 npm test
