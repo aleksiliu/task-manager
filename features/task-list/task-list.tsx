@@ -152,17 +152,24 @@ export function TaskListComponent({
                 </Select>
               </div>
             )}
-            <ul className='space-y-2' role='list' aria-label='Task list'>
-              {filteredTasks.map((task) => (
-                <TaskItem
-                  key={task.id}
-                  task={task}
-                  onEdit={(taskId, description) => onEditTask(taskList.id, taskId, description)}
-                  onDelete={(taskId) => onDeleteTask(taskList.id, taskId)}
-                  onStatusChange={(taskId, status) => onChangeTaskStatus(taskList.id, taskId, status)}
-                />
-              ))}
-            </ul>
+
+            {filteredTasks.length > 0 ? (
+              <ul className='space-y-2' role='list' aria-label='Task list'>
+                {filteredTasks.map((task) => (
+                  <TaskItem
+                    key={task.id}
+                    task={task}
+                    onEdit={(taskId, description) => onEditTask(taskList.id, taskId, description)}
+                    onDelete={(taskId) => onDeleteTask(taskList.id, taskId)}
+                    onStatusChange={(taskId, status) => onChangeTaskStatus(taskList.id, taskId, status)}
+                  />
+                ))}
+              </ul>
+            ) : (
+              <p className='text-center text-muted-foreground' role='status'>
+                No tasks found for the selected filter
+              </p>
+            )}
           </>
         )}
       </CardContent>
