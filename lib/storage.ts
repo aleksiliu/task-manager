@@ -8,6 +8,7 @@ export const storage = {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(taskLists));
     } catch (error) {
       console.error('Error saving to localStorage:', error);
+      throw error;
     }
   },
 
@@ -17,7 +18,7 @@ export const storage = {
       return data ? JSON.parse(data) : [];
     } catch (error) {
       console.error('Error loading from localStorage:', error);
-      return [];
+      throw error;
     }
   },
 
@@ -26,6 +27,7 @@ export const storage = {
       localStorage.removeItem(STORAGE_KEY);
     } catch (error) {
       console.error('Error clearing localStorage:', error);
+      throw error;
     }
   }
 };
