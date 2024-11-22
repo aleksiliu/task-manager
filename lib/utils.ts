@@ -16,6 +16,10 @@ export const TASK_CONSTRAINTS = {
   }
 } as const;
 
+export const truncateText = (text: string, maxLength: number = 45) => {
+  return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+};
+
 export const validateListName = (name: string, existingNames: string[] = []): string | null => {
   if (name.trim().length < TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH) {
     return `Task list name must be at least ${TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH} characters`;

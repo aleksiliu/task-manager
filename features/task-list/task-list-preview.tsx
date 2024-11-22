@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { TASK_CONSTRAINTS, cn } from '@/lib/utils';
+import { TASK_CONSTRAINTS, cn, truncateText } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList } from '@/types';
 
@@ -76,7 +76,9 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
           <>
             <div className='flex items-center gap-2'>
               <Link href={`/task/${taskList.id}`} className='hover:opacity-80'>
-                <CardTitle className='sm:truncate-none max-w-[200px] truncate sm:max-w-none'>{taskList.name}</CardTitle>
+                <CardTitle className='max-w-[200px] truncate sm:max-w-none' title={taskList.name}>
+                  {truncateText(taskList.name)}
+                </CardTitle>
               </Link>
               <Button
                 variant='ghost'

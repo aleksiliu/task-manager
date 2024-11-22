@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TASK_CONSTRAINTS, cn } from '@/lib/utils';
+import { TASK_CONSTRAINTS, cn, truncateText } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
 import { TaskItem } from './task-item';
@@ -103,8 +103,8 @@ export function TaskContainer({
               <Link href={`/task/${taskList.id}`}>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <CardTitle className='sm:truncate-none max-w-[200px] truncate hover:opacity-80 sm:max-w-none'>
-                      {taskList.name}
+                    <CardTitle className='max-w-[200px] truncate sm:max-w-none' title={taskList.name}>
+                      {truncateText(taskList.name)}
                     </CardTitle>
                   </PopoverTrigger>
                   <PopoverContent className='p-3 text-sm sm:hidden'>
