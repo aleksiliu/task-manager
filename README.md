@@ -34,7 +34,12 @@ cd task-manager
 npm install --legacy-peer-deps
 ```
 
-> **Note:** The `--legacy-peer-deps` flag is required due to peer dependency conflicts between shadcn/ui components and React 18. This is a temporary solution until the dependencies are updated.
+> **Note:** The `--legacy-peer-deps` flag is required due to:
+>
+> - Peer dependency conflicts between shadcn/ui components and React 18/19
+> - Testing library dependencies (@testing-library/react and Jest) compatibility with newer React versions
+>
+> This is a temporary solution until these dependencies are fully compatible with the latest React versions.
 
 ## Development
 
