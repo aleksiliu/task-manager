@@ -114,10 +114,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
               <span className='font-medium'>{progress}%</span>
             </div>
             <div className='mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary'>
-              <div
-                className={cn('h-full transition-all duration-300', progress === 100 ? 'bg-green-400' : 'bg-primary')}
-                style={{ width: `${progress}%` }}
-              />
+              <div className={cn('h-full bg-primary transition-all duration-300')} style={{ width: `${progress}%` }} />
             </div>
           </Link>
         </div>
