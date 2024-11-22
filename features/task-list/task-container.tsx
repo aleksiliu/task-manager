@@ -2,7 +2,6 @@
 
 import { Check, Edit, Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -100,18 +99,17 @@ export function TaskContainer({
         ) : (
           <>
             <div className='flex items-center gap-2'>
-              <Link href={`/task/${taskList.id}`}>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <CardTitle className='max-w-[200px] truncate sm:max-w-none' title={taskList.name}>
-                      {truncateText(taskList.name)}
-                    </CardTitle>
-                  </PopoverTrigger>
-                  <PopoverContent className='p-3 text-sm sm:hidden'>
-                    <div className='break-words font-medium'>{taskList.name}</div>
-                  </PopoverContent>
-                </Popover>
-              </Link>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <CardTitle className='max-w-[200px] truncate sm:max-w-none' title={taskList.name}>
+                    {truncateText(taskList.name)}
+                  </CardTitle>
+                </PopoverTrigger>
+                <PopoverContent className='p-3 text-sm sm:hidden'>
+                  <div className='break-words font-medium'>{taskList.name}</div>
+                </PopoverContent>
+              </Popover>
+
               <Button
                 variant='ghost'
                 size='icon'
