@@ -20,7 +20,7 @@ describe('Task List Name Validation', () => {
 
     invalidNames.forEach(({ name }) => {
       expect(validateListName(name)).toBe(
-        'List name can only contain letters and numbers (no spaces or special characters)'
+        'Task list name can only contain letters and numbers (no spaces or special characters)'
       );
     });
   });
@@ -35,7 +35,7 @@ describe('Task List Name Validation', () => {
 
     emptyNames.forEach((name) => {
       expect(validateListName(name)).toBe(
-        `List name must be at least ${TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH} characters`
+        `Task list name must be at least ${TASK_CONSTRAINTS.LIST_NAME.MIN_LENGTH} characters`
       );
     });
   });
