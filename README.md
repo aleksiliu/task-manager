@@ -14,39 +14,6 @@ Visit the live application: [Task Manager](https://task-manager-one-tawny.vercel
 - Form validation for task lists and tasks
 - Real-time persistence with localStorage
 
-## Folder Structure
-
-### `/app` - Next.js App Router
-- `page.tsx` - Main task list page
-- `task/[id]/page.tsx` - Individual task list view
-- `not-found.tsx` - 404 error page
-
-### `/features` - Feature-based components
-- `task-list/`
-  - `task-container.tsx` - Main task list container
-  - `task-item.tsx` - Individual task component
-  - `task-list-form.tsx` - New task list creation form
-  - `task-list-preview.tsx` - Task list preview card
-
-### `/hooks` - Custom React hooks
-- `use-form-validation.ts` - Form validation logic
-- `use-local-storage.ts` - localStorage management
-- `use-task-operations.ts` - Task CRUD operations
-
-### `/lib` - Utility functions
-- `storage.ts` - localStorage interface
-- `utils.ts` - Common utilities and constants
-
-### `/mocks` - Mock data
-- `taskData.ts` - Sample task data for testing
-
-### `/types` - TypeScript definitions
-- `index.ts` - Core type definitions (TaskList, Task, TaskStatus)
-
-### `/__tests__` - Test files
-- `hooks/` - Tests for custom hooks
-- `validate-list-name.test.ts` - Validation utility tests
-
 ## Prerequisites
 
 - Node.js 20 or higher
@@ -91,4 +58,42 @@ Watch mode for development:
 npm run test:watch
 ```
 
+## Folder Structure
 
+### `/app` - Next.js App Router
+
+- `page.tsx` - Main task list page
+- `task/[id]/page.tsx` - Individual task list view
+- `not-found.tsx` - 404 error page
+
+### `/features` - Feature-based components
+
+- `task-list/`
+  - `task-container.tsx` - Main task list container
+  - `task-item.tsx` - Individual task component
+  - `task-list-form.tsx` - New task list creation form
+  - `task-list-preview.tsx` - Task list preview card
+
+### `/hooks` - Custom React hooks
+
+- `use-form-validation.ts` - Form validation logic
+- `use-local-storage.ts` - localStorage management
+- `use-task-operations.ts` - Task CRUD operations
+
+### `/lib` - Utility functions
+
+- `storage.ts` - localStorage interface
+- `utils.ts` - Common utilities and constants
+
+### `/mocks` - Mock data
+
+- `taskData.ts` - Sample task data for testing
+
+### `/types` - TypeScript definitions
+
+- `index.ts` - Core type definitions (TaskList, Task, TaskStatus)
+
+### `/__tests__` - Test files
+
+- `hooks/` - Tests for custom hooks
+- `validate-list-name.test.ts` - Validation utility tests
