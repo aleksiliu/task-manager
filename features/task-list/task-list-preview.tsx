@@ -28,8 +28,12 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
   const progress = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
 
   const handleSubmit = () => {
-    const otherNames = existingNames.filter((name) => name !== taskList.name);
+    if (editedName === taskList.name) {
+      setIsEditing(false);
+      return;
+    }
 
+    const otherNames = existingNames.filter((name) => name !== taskList.name);
     if (validateTaskList(editedName, otherNames)) {
       onEditName(taskList.id, editedName);
       setIsEditing(false);

@@ -40,7 +40,13 @@ export function TaskContainer({
   const { error, validateTaskList, setError } = useFormValidation();
 
   const handleSubmit = () => {
-    if (validateTaskList(editedName, existingNames)) {
+    if (editedName === taskList.name) {
+      setIsEditing(false);
+      return;
+    }
+
+    const otherNames = existingNames.filter((name) => name !== taskList.name);
+    if (validateTaskList(editedName, otherNames)) {
       onEditName(taskList.id, editedName);
       setIsEditing(false);
     }
