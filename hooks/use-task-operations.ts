@@ -1,7 +1,7 @@
 import type { TaskStatus } from '@/types';
 import { useLocalStorage } from './use-local-storage';
 
-export function useTaskOperations() {
+export function useTaskOperations(onTaskListDeleted?: () => void) {
   const [taskLists, setTaskLists, error] = useLocalStorage();
 
   const addTaskList = (name: string) => {
@@ -22,8 +22,12 @@ export function useTaskOperations() {
     }
   };
 
-  const deleteTaskList = (id: number) => {
+  const deleteTaskList = async (id: number) => {
     setTaskLists(taskLists.filter((list) => list.id !== id));
+    await Promise.resolve();
+    if (onTaskListDeleted) {
+      onTaskListDeleted();
+    }
   };
 
   const addTask = (listId: number, description: string) => {
