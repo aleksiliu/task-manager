@@ -37,7 +37,7 @@ export function TaskContainer({
   const [editedName, setEditedName] = useState(taskList.name);
   const [newTaskDescription, setNewTaskDescription] = useState('');
   const [filter, setFilter] = useState<TaskStatus>('todo');
-  const { error, validateTaskList, setError } = useFormValidation();
+  const { error, validateTaskList, validateTask, setError } = useFormValidation();
 
   const handleSubmit = () => {
     if (editedName === taskList.name) {
@@ -54,7 +54,7 @@ export function TaskContainer({
 
   const handleAddTask = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newTaskDescription.trim()) {
+    if (validateTask(newTaskDescription)) {
       onAddTask(taskList.id, newTaskDescription.trim());
       setNewTaskDescription('');
       setFilter('todo');
@@ -138,24 +138,35 @@ export function TaskContainer({
         )}
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleAddTask} className='mb-4 flex space-x-2'>
-          <div className='flex-grow'>
-            <label className='sr-only' htmlFor={`new-task-${taskList.id}`}>
-              Add new task
-            </label>
-            <Input
-              id={`new-task-${taskList.id}`}
-              type='text'
-              value={newTaskDescription}
-              onChange={(e) => setNewTaskDescription(e.target.value)}
-              placeholder='Add a new task'
-              className='w-full'
-            />
+        <form onSubmit={handleAddTask} className='mb-4 flex flex-col gap-2'>
+          <div className='flex space-x-2'>
+            <div className='flex-grow'>
+              <label className='sr-only' htmlFor={`new-task-${taskList.id}`}>
+                Add new task
+              </label>
+              <Input
+                id={`new-task-${taskList.id}`}
+                type='text'
+                value={newTaskDescription}
+                onChange={(e) => {
+                  setNewTaskDescription(e.target.value);
+                  setError(null);
+                }}
+                placeholder='Add a new task'
+                className={cn('w-full', error && 'border-red-500')}
+                aria-invalid={error ? 'true' : 'false'}
+              />
+            </div>
+            <Button type='submit' aria-label='Add new task'>
+              <Plus className='h-4 w-4' />
+              Add Task
+            </Button>
           </div>
-          <Button type='submit' aria-label='Add new task'>
-            <Plus className='h-4 w-4' />
-            Add Task
-          </Button>
+          {error && (
+            <p role='alert' className='text-sm text-red-500'>
+              {error}
+            </p>
+          )}
         </form>
 
         {taskList.tasks.length === 0 ? (
