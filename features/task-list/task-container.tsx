@@ -37,7 +37,9 @@ export function TaskContainer({
   const [editedName, setEditedName] = useState(taskList.name);
   const [newTaskDescription, setNewTaskDescription] = useState('');
   const [filter, setFilter] = useState<TaskStatus>('todo');
-  const { error, validateTaskList, validateTask, setError } = useFormValidation();
+
+  const { error: nameError, validateTaskList, setError: setNameError } = useFormValidation();
+  const { error: taskError, validateTask, setError: setTaskError } = useFormValidation();
 
   const handleSubmit = () => {
     if (editedName === taskList.name) {
@@ -80,7 +82,7 @@ export function TaskContainer({
                 value={editedName}
                 onChange={(e) => {
                   setEditedName(e.target.value);
-                  setError(null);
+                  setNameError(null);
                 }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
@@ -89,16 +91,16 @@ export function TaskContainer({
                   }
                 }}
                 maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
-                className={cn('flex-grow', error && 'border-red-500')}
-                aria-invalid={error ? 'true' : 'false'}
+                className={cn('flex-grow', nameError && 'border-red-500')}
+                aria-invalid={nameError ? 'true' : 'false'}
               />
               <Button variant='ghost' size='icon' onClick={handleSubmit} aria-label='Save list name'>
                 <Check className='h-4 w-4' />
               </Button>
             </div>
-            {error && (
+            {nameError && (
               <p role='alert' className='text-sm text-red-500'>
-                {error}
+                {nameError}
               </p>
             )}
           </div>
@@ -150,11 +152,11 @@ export function TaskContainer({
                 value={newTaskDescription}
                 onChange={(e) => {
                   setNewTaskDescription(e.target.value);
-                  setError(null);
+                  setTaskError(null);
                 }}
                 placeholder='Add a new task'
-                className={cn('w-full', error && 'border-red-500')}
-                aria-invalid={error ? 'true' : 'false'}
+                className={cn('w-full', taskError && 'border-red-500')}
+                aria-invalid={taskError ? 'true' : 'false'}
               />
             </div>
             <Button type='submit' aria-label='Add new task'>
@@ -162,9 +164,9 @@ export function TaskContainer({
               Add Task
             </Button>
           </div>
-          {error && (
+          {taskError && (
             <p role='alert' className='text-sm text-red-500'>
-              {error}
+              {taskError}
             </p>
           )}
         </form>
