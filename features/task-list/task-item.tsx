@@ -4,8 +4,8 @@ import { Check, Edit, Play, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
 import type { Task, TaskStatus } from '@/types';
+import styles from './task-item.module.css';
 
 interface TaskItemProps {
   task: Task;
@@ -39,21 +39,21 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
       case 'todo':
         return (
           <Button variant='outline' size='sm' onClick={() => onStatusChange(task.id, 'doing')}>
-            <Play className='mr-1 h-4 w-4' />
+            <Play className={styles.icon} />
             Start Task
           </Button>
         );
       case 'doing':
         return (
           <Button variant='outline' size='sm' onClick={() => onStatusChange(task.id, 'done')}>
-            <Check className='mr-1 h-4 w-4' />
+            <Check className={styles.icon} />
             Complete Task
           </Button>
         );
       case 'done':
         return (
-          <div className='flex items-center'>
-            <Check className='mr-1 h-4 w-4' />
+          <div className={styles.actionContainer}>
+            <Check className={styles.icon} />
             Completed
           </div>
         );
@@ -61,10 +61,10 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
   };
 
   return (
-    <li className='flex flex-col items-start justify-between gap-3 rounded-md bg-secondary p-3 transition-colors hover:bg-secondary/80 sm:flex-row sm:items-center sm:gap-2'>
-      <div className='flex w-full flex-grow items-center sm:w-auto'>
+    <li className={styles.task}>
+      <div className={styles.task__content}>
         {isEditing ? (
-          <div className='flex w-full items-center gap-2'>
+          <div className={styles.task__edit}>
             <Input
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
@@ -74,26 +74,23 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
                   handleSubmit();
                 }
               }}
-              className='flex-grow'
               autoFocus
             />
             <Button
               variant='ghost'
               size='icon'
               onClick={handleSubmit}
-              className='h-8 w-8 shrink-0'
+              className={styles.task__icon_button}
               aria-label='Save task'>
-              <Check className='h-4 w-4' />
+              <Check className={styles.task__icon} />
             </Button>
           </div>
         ) : (
-          <div className='flex w-full items-center gap-2'>
-            <span
-              className={cn(
-                'hyphens-auto break-all',
-                'max-w-[calc(100%-2rem)]',
-                task.status === 'done' && 'line-through'
-              )}>
+          <div className={styles.task__edit}>
+            <span 
+              className={`${styles.task__description} ${
+                task.status === 'done' ? styles['task__description--completed'] : ''
+              }`}>
               {task.description}
             </span>
             {task.status !== 'done' && (
@@ -101,19 +98,23 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
                 variant='ghost'
                 size='icon'
                 onClick={handleEdit}
-                className='h-8 w-8 shrink-0'
+                className={styles.task__icon_button}
                 aria-label='Edit task'>
-                <Edit className='h-4 w-4' />
+                <Edit className={styles.task__icon} />
               </Button>
             )}
           </div>
         )}
       </div>
       {!isEditing && (
-        <div className='flex w-full items-center gap-2 sm:w-auto'>
-          <div className='flex-grow sm:flex-grow-0'>{getStatusButton()}</div>
-          <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)} className='h-8 w-8 shrink-0'>
-            <Trash2 className='h-4 w-4' />
+        <div className={styles.actionContainer}>
+          <div className={styles.actionButton}>{getStatusButton()}</div>
+          <Button 
+            variant='ghost' 
+            size='icon' 
+            onClick={() => onDelete(task.id)} 
+            className={styles.iconButton}>
+            <Trash2 className={styles.icon} />
           </Button>
         </div>
       )}

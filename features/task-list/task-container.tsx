@@ -10,6 +10,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TASK_CONSTRAINTS, cn, truncateText } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
+import styles from './task-container.module.css';
 import { TaskItem } from './task-item';
 
 interface TaskContainerProps {
@@ -47,7 +48,7 @@ export function TaskContainer({
       return;
     }
 
-    const otherNames = existingNames.filter((name) => name !== taskList.name);
+    const otherNames = existingNames.filter((name) => name !== taskList.name!);
     if (validateTaskList(editedName, otherNames)) {
       onEditName(taskList.id, editedName);
       setIsEditing(false);
@@ -66,13 +67,10 @@ export function TaskContainer({
   const filteredTasks = taskList.tasks.filter((task) => task.status === filter);
 
   return (
-    <Card
-      className='mb-4 shadow-md transition-all hover:shadow-lg'
-      role='region'
-      aria-label={`Task list: ${taskList.name}`}>
-      <CardHeader className='flex flex-row items-center justify-between'>
+    <Card className={styles['task-container']} role='region' aria-label={`Task list: ${taskList.name}`}>
+      <CardHeader className={styles['task-container__header']}>
         {isEditing ? (
-          <div className='flex flex-grow flex-col gap-2'>
+          <div className={styles['task-container__edit']}>
             <div className='flex items-center gap-2'>
               <label className='sr-only' htmlFor={`edit-list-${taskList.id}`}>
                 Edit list name
@@ -91,7 +89,11 @@ export function TaskContainer({
                   }
                 }}
                 maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
-                className={cn('flex-grow', nameError && 'border-red-500')}
+                className={cn(
+                  'flex-grow border',
+                  nameError ? '[border-color:var(--destructive)]' : '[border-color:var(--input)]',
+                  '[transition:var(--transition-all)]'
+                )}
                 aria-invalid={nameError ? 'true' : 'false'}
               />
               <Button variant='ghost' size='icon' onClick={handleSubmit} aria-label='Save list name'>
@@ -109,7 +111,7 @@ export function TaskContainer({
             <div className='flex items-center gap-2'>
               <Popover>
                 <PopoverTrigger asChild>
-                  <CardTitle className='max-w-[200px] truncate sm:max-w-none' title={taskList.name}>
+                  <CardTitle className={styles['task-container__title']} title={taskList.name}>
                     {truncateText(taskList.name)}
                   </CardTitle>
                 </PopoverTrigger>
@@ -139,8 +141,8 @@ export function TaskContainer({
           </>
         )}
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleAddTask} className='mb-4 flex flex-col gap-2'>
+      <CardContent className={styles['task-container__content']}>
+        <form onSubmit={handleAddTask} className={styles['task-container__form']}>
           <div className='flex space-x-2'>
             <div className='flex-grow'>
               <label className='sr-only' htmlFor={`new-task-${taskList.id}`}>
@@ -155,7 +157,11 @@ export function TaskContainer({
                   setTaskError(null);
                 }}
                 placeholder='Add a new task'
-                className={cn('w-full', taskError && 'border-red-500')}
+                className={cn(
+                  'w-full border',
+                  taskError ? '[border-color:var(--destructive)]' : '[border-color:var(--input)]',
+                  '[transition:var(--transition-all)]'
+                )}
                 aria-invalid={taskError ? 'true' : 'false'}
               />
             </div>
@@ -172,12 +178,12 @@ export function TaskContainer({
         </form>
 
         {taskList.tasks.length === 0 ? (
-          <p className='text-center text-muted-foreground' role='status'>
+          <p className={styles['task-container__no-tasks']} role='status'>
             No tasks yet. Add your first task above!
           </p>
         ) : (
           <>
-            <div className='mb-4'>
+            <div className={styles['task-container__tabs']}>
               <Tabs
                 defaultValue='todo'
                 value={filter}
@@ -198,7 +204,7 @@ export function TaskContainer({
             </div>
 
             {filteredTasks.length > 0 ? (
-              <ul className='space-y-2' role='list' aria-label='Task list'>
+              <ul className={styles['task-container__tasks']} role='list' aria-label='Task list'>
                 {filteredTasks.map((task) => (
                   <TaskItem
                     key={task.id}
@@ -210,7 +216,7 @@ export function TaskContainer({
                 ))}
               </ul>
             ) : (
-              <p className='text-center text-muted-foreground' role='status'>
+              <p className={styles['task-container__no-tasks']} role='status'>
                 No tasks found for the selected filter
               </p>
             )}
