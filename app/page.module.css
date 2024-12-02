@@ -1,0 +1,62 @@
+.task-manager {
+    max-width: 48rem;
+    margin: var(--space-4) auto;
+    padding: var(--space-4);
+  }
+  
+  .task-manager__title {
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .task-manager__error {
+    margin-bottom: var(--space-4);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background-color: var(--destructive);
+    opacity: 0.15;
+    color: var(--destructive);
+  }
+  
+  .task-manager__lists {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  
+  .task-manager__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    padding: var(--space-8);
+    text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--secondary);
+    margin-top: var(--space-8);
+  }
+  
+  .task-manager__empty-icon {
+    padding: var(--space-3);
+    border-radius: 9999px;
+    background-color: var(--muted);
+  }
+  
+  .task-manager__empty-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  
+  .task-manager__empty-title {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+  
+  .task-manager__empty-text {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+  }
