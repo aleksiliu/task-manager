@@ -80,7 +80,7 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
               variant='ghost'
               size='icon'
               onClick={handleSubmit}
-              className={styles.task__icon_button}
+              className={styles['task__icon-button']}
               aria-label='Save task'>
               <Check className={styles.task__icon} />
             </Button>
@@ -107,14 +107,14 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
         )}
       </div>
       {!isEditing && (
-        <div className={styles.actionContainer}>
-          <div className={styles.actionButton}>{getStatusButton()}</div>
+        <div className={styles.task__actions}>
+          <div className={styles.task__button}>{getStatusButton()}</div>
           <Button 
             variant='ghost' 
             size='icon' 
             onClick={() => onDelete(task.id)} 
-            className={styles.iconButton}>
-            <Trash2 className={styles.icon} />
+            className={styles['task__icon-button']}>
+            <Trash2 className={styles.task__icon} />
           </Button>
         </div>
       )}

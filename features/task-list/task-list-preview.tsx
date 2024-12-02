@@ -6,9 +6,10 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { TASK_CONSTRAINTS, cn, truncateText } from '@/lib/utils';
+import { TASK_CONSTRAINTS } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList } from '@/types';
+import styles from './task-list-preview.module.css';
 
 interface TaskListPreviewProps {
   taskList: TaskList;
@@ -41,11 +42,11 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
   };
 
   return (
-    <Card className='mb-4 transition-all hover:shadow-md'>
-      <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
+    <Card className={styles.preview}>
+      <CardHeader className={styles.preview__header}>
         {isEditing ? (
-          <div className='flex flex-grow flex-col gap-2'>
-            <div className='flex items-center gap-2'>
+          <div className={styles.preview__edit}>
+            <div className={styles['preview__edit-group']}>
               <label className='sr-only' htmlFor={`edit-list-${taskList.id}`}>
                 Edit list name
               </label>
@@ -63,81 +64,79 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
                   }
                 }}
                 maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
-                className={cn('flex-grow', error && 'border-red-500')}
+                className={error ? styles['preview__input--error'] : ''}
                 aria-invalid={error ? 'true' : 'false'}
               />
               <Button variant='ghost' size='icon' onClick={handleSubmit} aria-label='Save list name'>
-                <Check className='h-4 w-4' />
+                <Check className={styles.button__icon} />
               </Button>
             </div>
             {error && (
-              <p role='alert' className='text-sm text-red-500'>
+              <p role='alert' className={styles.preview__error}>
                 {error}
               </p>
             )}
           </div>
         ) : (
           <>
-            <div className='flex items-center gap-2'>
-              <Link href={`/task/${taskList.id}`} className='hover:opacity-80'>
-                <CardTitle className='max-w-[200px] truncate sm:max-w-none' title={taskList.name}>
-                  {truncateText(taskList.name)}
+            <div className={styles['preview__edit-group']}>
+              <Link href={`/task/${taskList.id}`} className={styles['preview__title-link']}>
+                <CardTitle className={styles.preview__title} title={taskList.name}>
+                  {taskList.name}
                 </CardTitle>
               </Link>
               <Button
                 variant='ghost'
                 size='icon'
                 onClick={() => setIsEditing(true)}
-                className='h-6 w-6 shrink-0'
                 aria-label={`Edit list name: ${taskList.name}`}>
-                <Edit className='h-4 w-4' />
+                <Edit className={styles.button__icon} />
               </Button>
             </div>
-            <div className='flex space-x-2'>
-              <Button
-                variant='ghost'
-                size='icon'
-                onClick={() => onDelete(taskList.id)}
-                aria-label={`Delete list: ${taskList.name}`}>
-                <Trash2 className='h-4 w-4' />
-              </Button>
-            </div>
+            <Button
+              variant='ghost'
+              size='icon'
+              onClick={() => onDelete(taskList.id)}
+              aria-label={`Delete list: ${taskList.name}`}>
+              <Trash2 className={styles.button__icon} />
+            </Button>
           </>
         )}
       </CardHeader>
 
-      <div className='px-6 pb-4'>
-        <div className='space-y-1'>
-          <Link href={`/task/${taskList.id}`} className='block'>
-            <div className='flex items-center justify-between text-sm'>
-              <div className='flex items-center gap-2'>
-                <span className='text-muted-foreground'>Progress</span>
-                <span className='text-muted-foreground'>
+      <div className={styles.preview__content}>
+        <Link href={`/task/${taskList.id}`}>
+          <div className={styles.preview__progress}>
+            <div className={styles['preview__progress-text']}>
+              <div className={styles['preview__edit-group']}>
+                <span>Progress</span>
+                <span>
                   ({completedTasks}/{totalTasks} done
                   {inProgressTasks > 0 && `, ${inProgressTasks} in doing`})
                 </span>
               </div>
-              <span className='font-medium'>{progress}%</span>
+              <span>{progress}%</span>
             </div>
-            <div className='mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary'>
-              <div className={cn('h-full bg-primary transition-all duration-300')} style={{ width: `${progress}%` }} />
+            <div className={styles['preview__progress-bar']}>
+              <div 
+                className={styles['preview__progress-fill']} 
+                style={{ width: `${progress}%` }} 
+              />
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
 
-        <div className='mt-4 flex items-center justify-center'>
-          <Link
-            href={`/task/${taskList.id}`}
-            className='flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'>
+        <div className={styles.preview__footer}>
+          <Link href={`/task/${taskList.id}`} className={styles.preview__link}>
             {totalTasks === 0 ? (
               <>
                 Add tasks
-                <ArrowRight className='h-4 w-4' />
+                <ArrowRight className={styles.button__icon} />
               </>
             ) : (
               <>
                 View tasks
-                <ArrowRight className='h-4 w-4' />
+                <ArrowRight className={styles.button__icon} />
               </>
             )}
           </Link>
