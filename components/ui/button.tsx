@@ -18,7 +18,9 @@ export function Button({
       className={`${styles.button} ${styles[variant]} ${styles[`size-${size}`]} ${className}`}
       {...props}
     >
-      {children}
+      <span className={styles.button__content}>
+        {children}
+      </span>
     </button>
   );
 }
