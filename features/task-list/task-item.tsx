@@ -38,22 +38,30 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
     switch (task.status) {
       case 'todo':
         return (
-          <Button variant='outline' size='sm' onClick={() => onStatusChange(task.id, 'doing')}>
-            <Play className={styles.icon} />
+          <Button 
+            variant='outline' 
+            size='default' 
+            onClick={() => onStatusChange(task.id, 'doing')}
+            className={styles.task__button}>
+            <Play className={styles.task__icon} />
             Start Task
           </Button>
         );
       case 'doing':
         return (
-          <Button variant='outline' size='sm' onClick={() => onStatusChange(task.id, 'done')}>
-            <Check className={styles.icon} />
+          <Button 
+            variant='outline' 
+            size='default' 
+            onClick={() => onStatusChange(task.id, 'done')}
+            className={styles.task__button}>
+            <Check className={styles.task__icon} />
             Complete Task
           </Button>
         );
       case 'done':
         return (
-          <div className={styles.actionContainer}>
-            <Check className={styles.icon} />
+          <div className={styles.task__actions}>
+            <Check className={styles.task__icon} />
             Completed
           </div>
         );
