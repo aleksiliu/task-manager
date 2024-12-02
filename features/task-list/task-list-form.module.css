@@ -31,17 +31,6 @@
     flex-grow: 1;
   }
   
-  .form__input {
-    width: 100%;
-    border-color: var(--input);
-    border-radius: var(--radius-md);
-    transition: var(--transition-all);
-  }
-  
-  .form__input--error {
-    border-color: var(--destructive);
-  }
-  
   .form__error {
     color: var(--destructive);
     font-size: 0.875rem;

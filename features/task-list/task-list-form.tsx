@@ -47,9 +47,8 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
                   setError(null);
                 }}
                 placeholder='New task list name'
-                className={`${styles.form__input} ${error ? styles['form__input--error'] : ''}`}
                 maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
-                aria-invalid={error ? 'true' : 'false'}
+                error={!!error}
               />
             </div>
             <Button type='submit' className={styles.form__button} aria-label='Create new list'>

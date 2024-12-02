@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TASK_CONSTRAINTS, cn, truncateText } from '@/lib/utils';
+import { TASK_CONSTRAINTS, truncateText } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
 import styles from './task-container.module.css';
@@ -71,7 +71,7 @@ export function TaskContainer({
       <CardHeader className={styles['task-container__header']}>
         {isEditing ? (
           <div className={styles['task-container__edit']}>
-            <div className='flex items-center gap-2'>
+            <div className={styles['task-container__edit-group']}>
               <label className='sr-only' htmlFor={`edit-list-${taskList.id}`}>
                 Edit list name
               </label>
@@ -89,34 +89,34 @@ export function TaskContainer({
                   }
                 }}
                 maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
-                className={cn(
-                  'flex-grow border',
-                  nameError ? '[border-color:var(--destructive)]' : '[border-color:var(--input)]',
-                  '[transition:var(--transition-all)]'
-                )}
-                aria-invalid={nameError ? 'true' : 'false'}
+                error={!!nameError}
               />
-              <Button variant='ghost' size='icon' onClick={handleSubmit} aria-label='Save list name'>
-                <Check className='h-4 w-4' />
+              <Button
+                variant='ghost'
+                size='icon'
+                onClick={handleSubmit}
+                className={styles['task-container__edit-button']}
+                aria-label='Save list name'>
+                <Check className={styles['task-container__edit-icon']} />
               </Button>
             </div>
             {nameError && (
-              <p role='alert' className='text-sm text-red-500'>
+              <p role='alert' className={styles['task-container__error']}>
                 {nameError}
               </p>
             )}
           </div>
         ) : (
           <>
-            <div className='flex items-center gap-2'>
+            <div className={styles['task-container__edit-group']}>
               <Popover>
                 <PopoverTrigger asChild>
                   <CardTitle className={styles['task-container__title']} title={taskList.name}>
                     {truncateText(taskList.name)}
                   </CardTitle>
                 </PopoverTrigger>
-                <PopoverContent className='p-3 text-sm sm:hidden'>
-                  <div className='break-words font-medium'>{taskList.name}</div>
+                <PopoverContent className={styles['task-container__popover-content']}>
+                  <div className={styles['task-container__popover-text']}>{taskList.name}</div>
                 </PopoverContent>
               </Popover>
 
@@ -124,27 +124,26 @@ export function TaskContainer({
                 variant='ghost'
                 size='icon'
                 onClick={() => setIsEditing(true)}
-                className='h-6 w-6 shrink-0'
+                className={styles['task-container__edit-button']}
                 aria-label={`Edit list name: ${taskList.name}`}>
-                <Edit className='h-4 w-4' />
+                <Edit className={styles['task-container__edit-icon']} />
               </Button>
             </div>
-            <div className='flex space-x-2'>
-              <Button
-                variant='ghost'
-                size='icon'
-                onClick={() => onDelete(taskList.id)}
-                aria-label={`Delete list: ${taskList.name}`}>
-                <Trash2 className='h-4 w-4' />
-              </Button>
-            </div>
+            <Button
+              variant='ghost'
+              size='icon'
+              onClick={() => onDelete(taskList.id)}
+              className={styles['task-container__edit-button']}
+              aria-label={`Delete list: ${taskList.name}`}>
+              <Trash2 className={styles['task-container__edit-icon']} />
+            </Button>
           </>
         )}
       </CardHeader>
       <CardContent className={styles['task-container__content']}>
         <form onSubmit={handleAddTask} className={styles['task-container__form']}>
-          <div className='flex space-x-2'>
-            <div className='flex-grow'>
+          <div className={styles['task-container__form-group']}>
+            <div className={styles['task-container__form-input-wrapper']}>
               <label className='sr-only' htmlFor={`new-task-${taskList.id}`}>
                 Add new task
               </label>
@@ -157,21 +156,16 @@ export function TaskContainer({
                   setTaskError(null);
                 }}
                 placeholder='Add a new task'
-                className={cn(
-                  'w-full border',
-                  taskError ? '[border-color:var(--destructive)]' : '[border-color:var(--input)]',
-                  '[transition:var(--transition-all)]'
-                )}
-                aria-invalid={taskError ? 'true' : 'false'}
+                error={!!taskError}
               />
             </div>
-            <Button type='submit' aria-label='Add new task'>
-              <Plus className='h-4 w-4' />
+            <Button type='submit' className={styles['task-container__form-button']} aria-label='Add new task'>
+              <Plus className={styles['task-container__edit-icon']} />
               Add Task
             </Button>
           </div>
           {taskError && (
-            <p role='alert' className='text-sm text-red-500'>
+            <p role='alert' className={styles['task-container__error']}>
               {taskError}
             </p>
           )}
