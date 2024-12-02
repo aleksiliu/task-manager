@@ -1,0 +1,70 @@
+.container {
+    width: 100%;
+    max-width: 48rem;
+    margin: var(--space-4) auto;
+    padding: 0 var(--space-4);
+  }
+  
+  .backButton {
+    margin-bottom: var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition-all);
+  }
+  
+  .backButton:hover {
+    opacity: 0.8;
+  }
+  
+  .backIcon {
+    height: var(--space-4);
+    width: var(--space-4);
+    margin-right: var(--space-2);
+  }
+  
+  .cardContent {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: 32rem;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--foreground);
+  }
+  
+  .description {
+    font-size: 1rem;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
+  
+  .returnButton {
+    min-width: 10rem;
+  }
+  
+  @media (max-width: 640px) {
+    .container {
+      padding: var(--space-4);
+    }
+  
+    .cardContent {
+      padding: var(--space-6);
+    }
+  
+    .title {
+      font-size: 1.5rem;
+    }
+  }
