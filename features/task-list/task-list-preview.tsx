@@ -42,8 +42,8 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
   };
 
   return (
-    <Card className={styles.preview}>
-      <CardHeader className={styles.preview__header}>
+    <Card>
+      <CardHeader>
         {isEditing ? (
           <div className={styles.preview__edit}>
             <div className={styles['preview__edit-group']}>
@@ -64,8 +64,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
                   }
                 }}
                 maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
-                className={error ? styles['preview__input--error'] : ''}
-                aria-invalid={error ? 'true' : 'false'}
+                error={!!error}
               />
               <Button variant='ghost' size='icon' onClick={handleSubmit} aria-label='Save list name'>
                 <Check className={styles.button__icon} />
@@ -81,9 +80,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
           <>
             <div className={styles['preview__edit-group']}>
               <Link href={`/task/${taskList.id}`} className={styles['preview__title-link']}>
-                <CardTitle className={styles.preview__title} title={taskList.name}>
-                  {taskList.name}
-                </CardTitle>
+                <CardTitle>{taskList.name}</CardTitle>
               </Link>
               <Button
                 variant='ghost'
