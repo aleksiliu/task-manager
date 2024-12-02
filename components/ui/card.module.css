@@ -6,6 +6,7 @@
   box-shadow: var(--shadow);
   margin-bottom: var(--space-4);
   transition: box-shadow 0.2s;
+  padding: var(--space-4);
 }
 
 .card:hover {
