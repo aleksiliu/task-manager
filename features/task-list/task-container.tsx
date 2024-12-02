@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TASK_CONSTRAINTS, truncateText } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
 import type { TaskList, TaskStatus } from '@/types';
@@ -109,17 +107,6 @@ export function TaskContainer({
         ) : (
           <>
             <div className={styles['task-container__edit-group']}>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <CardTitle className={styles['task-container__title']} title={taskList.name}>
-                    {truncateText(taskList.name)}
-                  </CardTitle>
-                </PopoverTrigger>
-                <PopoverContent className={styles['task-container__popover-content']}>
-                  <div className={styles['task-container__popover-text']}>{taskList.name}</div>
-                </PopoverContent>
-              </Popover>
-
               <Button
                 variant='ghost'
                 size='icon'
@@ -177,24 +164,17 @@ export function TaskContainer({
           </p>
         ) : (
           <>
-            <div className={styles['task-container__tabs']}>
-              <Tabs
-                defaultValue='todo'
+            <div className={styles['task-container__filter']}>
+              <label htmlFor='task-filter' className='sr-only'>Filter tasks</label>
+              <select
+                id='task-filter'
                 value={filter}
-                onValueChange={(value: string) => setFilter(value as TaskStatus)}
-                className='w-full'>
-                <TabsList className='grid w-full grid-cols-3'>
-                  <TabsTrigger value='todo'>
-                    Todo ({taskList.tasks.filter((t) => t.status === 'todo').length})
-                  </TabsTrigger>
-                  <TabsTrigger value='doing'>
-                    Doing ({taskList.tasks.filter((t) => t.status === 'doing').length})
-                  </TabsTrigger>
-                  <TabsTrigger value='done'>
-                    Done ({taskList.tasks.filter((t) => t.status === 'done').length})
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
+                onChange={(e) => setFilter(e.target.value as TaskStatus)}
+                className='w-full p-2 border rounded'>
+                <option value='todo'>Todo ({taskList.tasks.filter((t) => t.status === 'todo').length})</option>
+                <option value='doing'>Doing ({taskList.tasks.filter((t) => t.status === 'doing').length})</option>
+                <option value='done'>Done ({taskList.tasks.filter((t) => t.status === 'done').length})</option>
+              </select>
             </div>
 
             {filteredTasks.length > 0 ? (
