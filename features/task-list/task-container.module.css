@@ -8,20 +8,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  .task-container__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .task-container__title {
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
   .task-container__edit {
     display: flex;
     flex-grow: 1;
@@ -60,7 +46,6 @@
     flex-grow: 1;
   }
 
-  
   .task-container__form-icon {
     height: var(--space-4);
     width: var(--space-4);

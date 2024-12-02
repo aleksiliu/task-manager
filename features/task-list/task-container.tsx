@@ -65,8 +65,8 @@ export function TaskContainer({
   const filteredTasks = taskList.tasks.filter((task) => task.status === filter);
 
   return (
-    <Card className={styles['task-container']} role='region' aria-label={`Task list: ${taskList.name}`}>
-      <CardHeader className={styles['task-container__header']}>
+    <Card role='region' aria-label={`Task list: ${taskList.name}`}>
+      <CardHeader>
         {isEditing ? (
           <div className={styles['task-container__edit']}>
             <div className={styles['task-container__edit-group']}>
@@ -107,7 +107,7 @@ export function TaskContainer({
         ) : (
           <>
             <div className={styles['task-container__edit-group']}>
-            <CardTitle className={styles['task-container__title']} title={taskList.name}>
+            <CardTitle title={taskList.name}>
               {truncateText(taskList.name)}
             </CardTitle>
               <Button
@@ -130,7 +130,7 @@ export function TaskContainer({
           </>
         )}
       </CardHeader>
-      <CardContent className={styles['task-container__content']}>
+      <CardContent>
         <form onSubmit={handleAddTask} className={styles['task-container__form']}>
           <div className={styles['task-container__form-group']}>
             <div className={styles['task-container__form-input-wrapper']}>
