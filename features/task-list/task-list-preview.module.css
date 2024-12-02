@@ -15,10 +15,6 @@
   opacity: 0.8;
 }
 
-.preview__content {
-  padding: var(--space-6) var(--space-4);
-}
-
 .preview__progress {
   margin-bottom: var(--space-1);
 }

@@ -101,7 +101,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
         )}
       </CardHeader>
 
-      <div className={styles.preview__content}>
+      <div>
         <Link href={`/task/${taskList.id}`}>
           <div className={styles.preview__progress}>
             <div className={styles['preview__progress-text']}>
