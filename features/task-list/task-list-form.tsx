@@ -1,10 +1,13 @@
+'use client';
+
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { TASK_CONSTRAINTS, cn } from '@/lib/utils';
+import { TASK_CONSTRAINTS } from '@/lib/utils';
 import { useFormValidation } from '@/hooks/use-form-validation';
+import styles from './task-list-form.module.css';
 
 interface NewTaskListFormProps {
   onSubmit: (name: string) => void;
@@ -24,14 +27,14 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
   };
 
   return (
-    <Card className='mb-6' role='region' aria-label='Create new task list'>
-      <CardHeader>
-        <CardTitle>Create New Task List</CardTitle>
+    <Card className={styles.form} role='region' aria-label='Create new task list'>
+      <CardHeader className={styles.form__header}>
+        <CardTitle className={styles.form__title}>Create New Task List</CardTitle>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className='space-y-2'>
-          <div className='flex space-x-2'>
-            <div className='flex-grow'>
+      <CardContent className={styles.form__content}>
+        <form onSubmit={handleSubmit} className={styles.form__container}>
+          <div className={styles['form__input-group']}>
+            <div className={styles['form__input-wrapper']}>
               <label className='sr-only' htmlFor='new-list-name'>
                 New task list name
               </label>
@@ -44,18 +47,18 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
                   setError(null);
                 }}
                 placeholder='New task list name'
-                className={cn('w-full', error && 'border-red-500')}
+                className={`${styles.form__input} ${error ? styles['form__input--error'] : ''}`}
                 maxLength={TASK_CONSTRAINTS.LIST_NAME.MAX_LENGTH}
                 aria-invalid={error ? 'true' : 'false'}
               />
             </div>
-            <Button type='submit' aria-label='Create new list'>
-              <Plus className='h-4 w-4' />
+            <Button type='submit' className={styles.form__button} aria-label='Create new list'>
+              <Plus className={styles.form__icon} />
               Add List
             </Button>
           </div>
           {error && (
-            <p role='alert' className='text-sm text-red-500'>
+            <p role='alert' className={styles.form__error}>
               {error}
             </p>
           )}
