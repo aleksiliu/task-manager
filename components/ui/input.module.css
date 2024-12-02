@@ -1,4 +1,4 @@
-.input {
+.field {
   display: flex;
   height: var(--space-9);
   width: 100%;
@@ -10,37 +10,37 @@
   transition: var(--transition-all);
 }
 
-.input:focus {
+.field:focus {
   outline: none;
   border-color: var(--ring);
   box-shadow: 0 0 0 1px var(--ring);
 }
 
-.input::placeholder {
+.field::placeholder {
   color: var(--muted-foreground);
 }
 
-.input:disabled {
+.field:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
 
-.input--error {
+.error {
   border-color: var(--destructive);
 }
 
-.input--error:focus {
+.error:focus {
   box-shadow: 0 0 0 1px var(--destructive);
 }
 
 /* File input specific styles */
-.input[type='file'] {
+.field[type='file'] {
   border: none;
   background: none;
   padding: 0;
 }
 
-.input[type='file']::file-selector-button {
+.field[type='file']::file-selector-button {
   border: none;
   background: transparent;
   font-size: 0.875rem;
