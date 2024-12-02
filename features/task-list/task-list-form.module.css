@@ -36,12 +36,6 @@
     font-size: 0.875rem;
   }
   
-  .form__button {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-  
   .form__icon {
     width: var(--space-4);
     height: var(--space-4);
