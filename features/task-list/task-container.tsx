@@ -107,6 +107,9 @@ export function TaskContainer({
         ) : (
           <>
             <div className={styles['task-container__edit-group']}>
+            <CardTitle className={styles['task-container__title']} title={taskList.name}>
+              {truncateText(taskList.name)}
+            </CardTitle>
               <Button
                 variant='ghost'
                 size='icon'
