@@ -29,13 +29,13 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
   return (
     <Card role='region' aria-label='Create new task list'>
       <CardHeader>
-        <CardTitle >Create New Task List</CardTitle>
+        <CardTitle>Create New Task List</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className={styles.form__container}>
           <div className={styles['form__input-group']}>
             <div className={styles['form__input-wrapper']}>
-              <label className="sr-only" htmlFor='new-list-name'>
+              <label className='sr-only' htmlFor='new-list-name'>
                 New task list name
               </label>
               <Input

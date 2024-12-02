@@ -11,11 +11,7 @@ export default function TaskListNotFound() {
 
   return (
     <div className={styles.container}>
-      <Button 
-        variant='ghost' 
-        onClick={() => router.push('/')} 
-        className={styles.backButton}
-      >
+      <Button variant='ghost' onClick={() => router.push('/')} className={styles.backButton}>
         <ArrowLeft className={styles.backIcon} />
         Back to Lists
       </Button>
@@ -28,11 +24,7 @@ export default function TaskListNotFound() {
               The task list you&apos;re looking for doesn&apos;t exist or has been deleted.
             </p>
           </div>
-          <Button 
-            onClick={() => router.push('/')} 
-            variant='default'
-            className={styles.returnButton}
-          >
+          <Button onClick={() => router.push('/')} variant='default' className={styles.returnButton}>
             Return to Home
           </Button>
         </div>

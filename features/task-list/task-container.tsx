@@ -107,9 +107,7 @@ export function TaskContainer({
         ) : (
           <>
             <div className={styles['task-container__edit-group']}>
-            <CardTitle title={taskList.name}>
-              {truncateText(taskList.name)}
-            </CardTitle>
+              <CardTitle title={taskList.name}>{truncateText(taskList.name)}</CardTitle>
               <Button
                 variant='ghost'
                 size='icon'
@@ -168,7 +166,9 @@ export function TaskContainer({
         ) : (
           <>
             <div className={styles['task-container__filter']}>
-              <label htmlFor='task-filter' className='sr-only'>Filter tasks</label>
+              <label htmlFor='task-filter' className='sr-only'>
+                Filter tasks
+              </label>
               <select
                 id='task-filter'
                 value={filter}

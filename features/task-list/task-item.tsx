@@ -38,9 +38,9 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
     switch (task.status) {
       case 'todo':
         return (
-          <Button 
-            variant='outline' 
-            size='default' 
+          <Button
+            variant='outline'
+            size='default'
             onClick={() => onStatusChange(task.id, 'doing')}
             className={styles.task__button}>
             <Play className={styles.task__icon} />
@@ -49,9 +49,9 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
         );
       case 'doing':
         return (
-          <Button 
-            variant='outline' 
-            size='default' 
+          <Button
+            variant='outline'
+            size='default'
             onClick={() => onStatusChange(task.id, 'done')}
             className={styles.task__button}>
             <Check className={styles.task__icon} />
@@ -95,7 +95,7 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
           </div>
         ) : (
           <div className={styles.task__edit}>
-            <span 
+            <span
               className={`${styles.task__description} ${
                 task.status === 'done' ? styles['task__description--completed'] : ''
               }`}>
@@ -117,11 +117,7 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
       {!isEditing && (
         <div className={styles.task__actions}>
           <div className={styles.task__button}>{getStatusButton()}</div>
-          <Button 
-            variant='ghost' 
-            size='icon' 
-            onClick={() => onDelete(task.id)} 
-            className={styles['task__icon-button']}>
+          <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)} className={styles['task__icon-button']}>
             <Trash2 className={styles.task__icon} />
           </Button>
         </div>

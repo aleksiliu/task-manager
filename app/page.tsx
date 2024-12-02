@@ -15,15 +15,12 @@ export default function TaskManager() {
       <h1 className={styles['task-manager__title']}>Task Manager</h1>
 
       {error && (
-        <div className={styles['task-manager__error']} role="alert">
+        <div className={styles['task-manager__error']} role='alert'>
           <p>{error}</p>
         </div>
       )}
 
-      <NewTaskListForm 
-        onSubmit={addTaskList} 
-        existingNames={taskLists.map((list) => list.name)} 
-      />
+      <NewTaskListForm onSubmit={addTaskList} existingNames={taskLists.map((list) => list.name)} />
 
       <div className={styles['task-manager__lists']}>
         {taskLists.map((taskList) => (
@@ -40,19 +37,14 @@ export default function TaskManager() {
       {taskLists.length === 0 && (
         <div className={styles['task-manager__empty']}>
           <div className={styles['task-manager__empty-icon']}>
-            <ClipboardList className="h-6 w-6" />
+            <ClipboardList className='h-6 w-6' />
           </div>
           <div className={styles['task-manager__empty-content']}>
             <h3 className={styles['task-manager__empty-title']}>No tasks yet</h3>
-            <p className={styles['task-manager__empty-text']}>
-              Create your first task list to get started
-            </p>
+            <p className={styles['task-manager__empty-text']}>Create your first task list to get started</p>
           </div>
-          <Button 
-            onClick={() => document.querySelector('input')?.focus()} 
-            variant="outline"
-          >
-            <Plus className="h-4 w-4" />
+          <Button onClick={() => document.querySelector('input')?.focus()} variant='outline'>
+            <Plus className='h-4 w-4' />
             Create task list
           </Button>
         </div>

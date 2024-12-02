@@ -115,10 +115,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
               <span>{progress}%</span>
             </div>
             <div className={styles['preview__progress-bar']}>
-              <div 
-                className={styles['preview__progress-fill']} 
-                style={{ width: `${progress}%` }} 
-              />
+              <div className={styles['preview__progress-fill']} style={{ width: `${progress}%` }} />
             </div>
           </div>
         </Link>
