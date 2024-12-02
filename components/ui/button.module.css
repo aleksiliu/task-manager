@@ -53,10 +53,9 @@
     background-color: var(--background);
     border-color: var(--accent-foreground);
   }
-  
-  /* Sizes */
+ 
   .size-default {
-    height: var(--space-8);
+    height: var(--space-9);
     padding: 0 var(--space-4);
   }
   
@@ -66,7 +65,6 @@
     padding: var(--space-2);
   }
   
-  /* Icon styles */
   .button svg {
     width: var(--space-4);
     height: var(--space-4);
