@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useTaskOperations } from '@/hooks/use-task-operations';
 import { TaskContainer } from '@/features/task-list/task-container';
+import styles from './page.module.css';
 
 export default function SingleTaskList() {
   const router = useRouter();
@@ -30,22 +31,30 @@ export default function SingleTaskList() {
   }
 
   return (
-    <div className='container mt-4 max-w-3xl p-4'>
-      <Button variant='ghost' onClick={() => router.push('/')} className='mb-4'>
-        <ArrowLeft className='mr-2 h-4 w-4' />
-        Back to Lists
-      </Button>
+    <div className={`container ${styles.task}`}>
+      <div className={styles.task__header}>
+        <Button 
+          variant='ghost' 
+          onClick={() => router.push('/')} 
+          className={styles.task__back}
+        >
+          <ArrowLeft className={styles['task__back-icon']} />
+          Back to Lists
+        </Button>
+      </div>
 
-      <TaskContainer
-        taskList={currentList}
-        onEditName={editTaskListName}
-        onDelete={deleteTaskList}
-        onAddTask={addTask}
-        onEditTask={editTask}
-        onDeleteTask={deleteTask}
-        onChangeTaskStatus={changeTaskStatus}
-        existingNames={existingNames}
-      />
+      <div className={styles.task__content}>
+        <TaskContainer
+          taskList={currentList}
+          onEditName={editTaskListName}
+          onDelete={deleteTaskList}
+          onAddTask={addTask}
+          onEditTask={editTask}
+          onDeleteTask={deleteTask}
+          onChangeTaskStatus={changeTaskStatus}
+          existingNames={existingNames}
+        />
+      </div>
     </div>
   );
 }

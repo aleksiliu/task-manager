@@ -1,0 +1,34 @@
+.task {
+    max-width: 48rem;
+    margin-top: var(--space-4);
+  }
+  
+  .task__header {
+    margin-bottom: var(--space-4);
+  }
+  
+  .task__back {
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition-all);
+  }
+  
+  .task__back:hover {
+    opacity: 0.8;
+  }
+  
+  .task__back-icon {
+    height: var(--space-4);
+    width: var(--space-4);
+    margin-right: var(--space-2);
+  }
+  
+  .task__content {
+    width: 100%;
+  }
+  
+  @media (max-width: 640px) {
+    .task {
+      padding: var(--space-4);
+    }
+  }
