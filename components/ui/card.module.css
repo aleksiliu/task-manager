@@ -12,7 +12,7 @@
   box-shadow: var(--shadow-lg);
 }
 
-.card-header {
+.header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,7 +20,7 @@
   padding: var(--space-6);
 }
 
-.card-title {
+.title {
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1;
@@ -31,12 +31,12 @@
   white-space: nowrap;
 }
 
-.card-content {
+.content {
   padding: var(--space-6);
   padding-top: 0;
 }
 
-.card-footer {
+.footer {
   display: flex;
   align-items: center;
   padding: var(--space-6);
