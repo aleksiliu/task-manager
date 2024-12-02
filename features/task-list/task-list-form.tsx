@@ -27,11 +27,11 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
   };
 
   return (
-    <Card className={styles.form} role='region' aria-label='Create new task list'>
-      <CardHeader className={styles.form__header}>
-        <CardTitle className={styles.form__title}>Create New Task List</CardTitle>
+    <Card role='region' aria-label='Create new task list'>
+      <CardHeader>
+        <CardTitle >Create New Task List</CardTitle>
       </CardHeader>
-      <CardContent className={styles.form__content}>
+      <CardContent>
         <form onSubmit={handleSubmit} className={styles.form__container}>
           <div className={styles['form__input-group']}>
             <div className={styles['form__input-wrapper']}>

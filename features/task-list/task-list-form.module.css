@@ -2,26 +2,7 @@
     margin-bottom: var(--space-6);
   }
   
-  .form__header {
-    padding: var(--space-4);
-  }
-  
-  .form__title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--card-foreground);
-  }
-  
-  .form__content {
-    padding: var(--space-4);
-  }
-  
-  .form__container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-  
+
   .form__input-group {
     display: flex;
     gap: var(--space-2);
