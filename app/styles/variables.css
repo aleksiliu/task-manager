@@ -6,7 +6,7 @@
   --card-foreground: hsl(240 10% 4%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(240 10% 4%);
-  --primary: hsl(239 84% 67%);
+  --primary: hsl(239 84% 66%);
   --primary-foreground: hsl(0 0% 100%);
   --secondary: hsl(240 5% 96%);
   --secondary-foreground: hsl(240 6% 10%);
@@ -18,7 +18,7 @@
   --destructive-foreground: hsl(0 0% 98%);
   --border: hsl(240 5% 90%);
   --input: hsl(240 5% 90%);
-  --ring: hsl(239 84% 67%);
+  --ring: hsl(239 84% 66%);
 
   /* Spacing */
   --space-1: 0.25rem;
