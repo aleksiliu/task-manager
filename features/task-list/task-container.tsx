@@ -68,8 +68,8 @@ export function TaskContainer({
     <Card role='region' aria-label={`Task list: ${taskList.name}`}>
       <CardHeader>
         {isEditing ? (
-          <div className={styles['task-container__edit']}>
-            <div className={styles['task-container__edit-group']}>
+          <div className={styles.edit}>
+            <div className={styles.editGroup}>
               <label className='sr-only' htmlFor={`edit-list-${taskList.id}`}>
                 Edit list name
               </label>
@@ -93,45 +93,45 @@ export function TaskContainer({
                 variant='ghost'
                 size='icon'
                 onClick={handleSubmit}
-                className={styles['task-container__edit-button']}
+                className={styles.editButton}
                 aria-label='Save list name'>
-                <Check className={styles['task-container__edit-icon']} />
+                <Check className={styles.editIcon} />
               </Button>
             </div>
             {nameError && (
-              <p role='alert' className={styles['task-container__error']}>
+              <p role='alert' className={styles.error}>
                 {nameError}
               </p>
             )}
           </div>
         ) : (
           <>
-            <div className={styles['task-container__edit-group']}>
+            <div className={styles.editGroup}>
               <CardTitle title={taskList.name}>{truncateText(taskList.name)}</CardTitle>
               <Button
                 variant='ghost'
                 size='icon'
                 onClick={() => setIsEditing(true)}
-                className={styles['task-container__edit-button']}
+                className={styles.editButton}
                 aria-label={`Edit list name: ${taskList.name}`}>
-                <Edit className={styles['task-container__edit-icon']} />
+                <Edit className={styles.editIcon} />
               </Button>
             </div>
             <Button
               variant='ghost'
               size='icon'
               onClick={() => onDelete(taskList.id)}
-              className={styles['task-container__edit-button']}
+              className={styles.editButton}
               aria-label={`Delete list: ${taskList.name}`}>
-              <Trash2 className={styles['task-container__edit-icon']} />
+              <Trash2 className={styles.editIcon} />
             </Button>
           </>
         )}
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleAddTask} className={styles['task-container__form']}>
-          <div className={styles['task-container__form-group']}>
-            <div className={styles['task-container__form-input-wrapper']}>
+        <form onSubmit={handleAddTask} className={styles.form}>
+          <div className={styles.formGroup}>
+            <div className={styles.inputWrapper}>
               <label className='sr-only' htmlFor={`new-task-${taskList.id}`}>
                 Add new task
               </label>
@@ -147,25 +147,25 @@ export function TaskContainer({
                 error={!!taskError}
               />
             </div>
-            <Button type='submit' className={styles['task-container__form-button']} aria-label='Add new task'>
-              <Plus className={styles['task-container__edit-icon']} />
+            <Button type='submit' className={styles.formButton} aria-label='Add new task'>
+              <Plus className={styles.editIcon} />
               Add Task
             </Button>
           </div>
           {taskError && (
-            <p role='alert' className={styles['task-container__error']}>
+            <p role='alert' className={styles.error}>
               {taskError}
             </p>
           )}
         </form>
 
         {taskList.tasks.length === 0 ? (
-          <p className={styles['task-container__no-tasks']} role='status'>
+          <p className={styles.noTasks} role='status'>
             No tasks yet. Add your first task above!
           </p>
         ) : (
           <>
-            <div className={styles['task-container__filter']}>
+            <div className={styles.filter}>
               <label htmlFor='task-filter' className='sr-only'>
                 Filter tasks
               </label>
@@ -181,7 +181,7 @@ export function TaskContainer({
             </div>
 
             {filteredTasks.length > 0 ? (
-              <ul className={styles['task-container__tasks']} role='list' aria-label='Task list'>
+              <ul className={styles.tasks} role='list' aria-label='Task list'>
                 {filteredTasks.map((task) => (
                   <TaskItem
                     key={task.id}
@@ -193,7 +193,7 @@ export function TaskContainer({
                 ))}
               </ul>
             ) : (
-              <p className={styles['task-container__no-tasks']} role='status'>
+              <p className={styles.noTasks} role='status'>
                 No tasks found for the selected filter
               </p>
             )}

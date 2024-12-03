@@ -45,8 +45,8 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
     <Card>
       <CardHeader>
         {isEditing ? (
-          <div className={styles.preview__edit}>
-            <div className={styles['preview__edit-group']}>
+          <div className={styles.edit}>
+            <div className={styles.editGroup}>
               <label className='sr-only' htmlFor={`edit-list-${taskList.id}`}>
                 Edit list name
               </label>
@@ -67,19 +67,19 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
                 error={!!error}
               />
               <Button variant='ghost' size='icon' onClick={handleSubmit} aria-label='Save list name'>
-                <Check className={styles.button__icon} />
+                <Check className={styles.icon} />
               </Button>
             </div>
             {error && (
-              <p role='alert' className={styles.preview__error}>
+              <p role='alert' className={styles.error}>
                 {error}
               </p>
             )}
           </div>
         ) : (
           <>
-            <div className={styles['preview__edit-group']}>
-              <Link href={`/task/${taskList.id}`} className={styles['preview__title-link']}>
+            <div className={styles.editGroup}>
+              <Link href={`/task/${taskList.id}`} className={styles.titleLink}>
                 <CardTitle>{taskList.name}</CardTitle>
               </Link>
               <Button
@@ -87,7 +87,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
                 size='icon'
                 onClick={() => setIsEditing(true)}
                 aria-label={`Edit list name: ${taskList.name}`}>
-                <Edit className={styles.button__icon} />
+                <Edit className={styles.icon} />
               </Button>
             </div>
             <Button
@@ -95,7 +95,7 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
               size='icon'
               onClick={() => onDelete(taskList.id)}
               aria-label={`Delete list: ${taskList.name}`}>
-              <Trash2 className={styles.button__icon} />
+              <Trash2 className={styles.icon} />
             </Button>
           </>
         )}
@@ -103,9 +103,9 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
 
       <div>
         <Link href={`/task/${taskList.id}`}>
-          <div className={styles.preview__progress}>
-            <div className={styles['preview__progress-text']}>
-              <div className={styles['preview__edit-group']}>
+          <div className={styles.progress}>
+            <div className={styles.progressText}>
+              <div className={styles.editGroup}>
                 <span>Progress</span>
                 <span>
                   ({completedTasks}/{totalTasks} done
@@ -114,23 +114,23 @@ export function TaskListPreview({ taskList, onEditName, onDelete, existingNames 
               </div>
               <span>{progress}%</span>
             </div>
-            <div className={styles['preview__progress-bar']}>
-              <div className={styles['preview__progress-fill']} style={{ width: `${progress}%` }} />
+            <div className={styles.progressBar}>
+              <div className={styles.progressFill} style={{ width: `${progress}%` }} />
             </div>
           </div>
         </Link>
 
-        <div className={styles.preview__footer}>
-          <Link href={`/task/${taskList.id}`} className={styles.preview__link}>
+        <div className={styles.footer}>
+          <Link href={`/task/${taskList.id}`} className={styles.link}>
             {totalTasks === 0 ? (
               <>
                 Add tasks
-                <ArrowRight className={styles.button__icon} />
+                <ArrowRight className={styles.icon} />
               </>
             ) : (
               <>
                 View tasks
-                <ArrowRight className={styles.button__icon} />
+                <ArrowRight className={styles.icon} />
               </>
             )}
           </Link>

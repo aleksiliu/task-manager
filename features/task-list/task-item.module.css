@@ -14,27 +14,27 @@
   background-color: rgba(244, 244, 245, 0.8);
 }
 
-.task__content {
+.content {
   display: flex;
   width: 100%;
   flex-grow: 1;
   align-items: center;
 }
 
-.task__edit {
+.edit {
   display: flex;
   width: 100%;
   align-items: center;
   gap: var(--space-2);
 }
 
-.task__description {
+.description {
   hyphens: auto;
   word-break: break-all;
   max-width: calc(100% - var(--space-8));
 }
 
-.task__actions {
+.actions {
   display: flex;
   width: 100%;
   align-items: center;
@@ -42,14 +42,14 @@
   justify-content: space-between;
 }
 
-.task__icon {
+.icon {
   height: var(--space-4);
   width: var(--space-4);
   margin-right: var(--space-1);
 }
 
 /* Modifiers */
-.task__description--completed {
+.descriptionCompleted {
   text-decoration: line-through;
 }
 
@@ -61,15 +61,15 @@
     gap: var(--space-2);
   }
 
-  .task__content {
+  .content {
     width: auto;
   }
 
-  .task__actions {
+  .actions {
     width: auto;
   }
 
-  .task__button {
+  .button {
     flex-grow: 0;
   }
 }

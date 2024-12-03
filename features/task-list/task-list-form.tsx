@@ -32,9 +32,9 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
         <CardTitle>Create New Task List</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className={styles.form__container}>
-          <div className={styles['form__input-group']}>
-            <div className={styles['form__input-wrapper']}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <div className={styles.inputWrapper}>
               <label className='sr-only' htmlFor='new-list-name'>
                 New task list name
               </label>
@@ -51,13 +51,13 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
                 error={!!error}
               />
             </div>
-            <Button type='submit' className={styles.form__button} aria-label='Create new list'>
-              <Plus className={styles.form__icon} />
+            <Button type='submit' aria-label='Create new list'>
+              <Plus className={styles.icon} />
               Add List
             </Button>
           </div>
           {error && (
-            <p role='alert' className={styles.form__error}>
+            <p role='alert' className={styles.error}>
               {error}
             </p>
           )}

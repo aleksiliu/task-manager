@@ -42,8 +42,8 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
             variant='outline'
             size='default'
             onClick={() => onStatusChange(task.id, 'doing')}
-            className={styles.task__button}>
-            <Play className={styles.task__icon} />
+            className={styles.button}>
+            <Play className={styles.icon} />
             Start Task
           </Button>
         );
@@ -53,15 +53,15 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
             variant='outline'
             size='default'
             onClick={() => onStatusChange(task.id, 'done')}
-            className={styles.task__button}>
-            <Check className={styles.task__icon} />
+            className={styles.button}>
+            <Check className={styles.icon} />
             Complete Task
           </Button>
         );
       case 'done':
         return (
-          <div className={styles.task__actions}>
-            <Check className={styles.task__icon} />
+          <div className={styles.actions}>
+            <Check className={styles.icon} />
             Completed
           </div>
         );
@@ -70,9 +70,9 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
 
   return (
     <li className={styles.task}>
-      <div className={styles.task__content}>
+      <div className={styles.content}>
         {isEditing ? (
-          <div className={styles.task__edit}>
+          <div className={styles.edit}>
             <Input
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
@@ -88,17 +88,14 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
               variant='ghost'
               size='icon'
               onClick={handleSubmit}
-              className={styles['task__icon-button']}
+              className={styles.iconButton}
               aria-label='Save task'>
-              <Check className={styles.task__icon} />
+              <Check className={styles.icon} />
             </Button>
           </div>
         ) : (
-          <div className={styles.task__edit}>
-            <span
-              className={`${styles.task__description} ${
-                task.status === 'done' ? styles['task__description--completed'] : ''
-              }`}>
+          <div className={styles.edit}>
+            <span className={`${styles.description} ${task.status === 'done' ? styles.descriptionCompleted : ''}`}>
               {task.description}
             </span>
             {task.status !== 'done' && (
@@ -106,19 +103,19 @@ export function TaskItem({ task, onEdit, onDelete, onStatusChange }: TaskItemPro
                 variant='ghost'
                 size='icon'
                 onClick={handleEdit}
-                className={styles.task__icon_button}
+                className={styles.iconButton}
                 aria-label='Edit task'>
-                <Edit className={styles.task__icon} />
+                <Edit className={styles.icon} />
               </Button>
             )}
           </div>
         )}
       </div>
       {!isEditing && (
-        <div className={styles.task__actions}>
-          <div className={styles.task__button}>{getStatusButton()}</div>
-          <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)} className={styles['task__icon-button']}>
-            <Trash2 className={styles.task__icon} />
+        <div className={styles.actions}>
+          <div className={styles.button}>{getStatusButton()}</div>
+          <Button variant='ghost' size='icon' onClick={() => onDelete(task.id)} className={styles.iconButton}>
+            <Trash2 className={styles.icon} />
           </Button>
         </div>
       )}
