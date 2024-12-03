@@ -31,15 +31,15 @@ export default function SingleTaskList() {
   }
 
   return (
-    <div className={`container ${styles.task}`}>
-      <div className={styles.task__header}>
-        <Button variant='ghost' onClick={() => router.push('/')} className={styles.task__back}>
-          <ArrowLeft className={styles['task__back-icon']} />
+    <div className={`container ${styles.root}`}>
+      <div className={styles.header}>
+        <Button variant='ghost' onClick={() => router.push('/')} className={styles.back}>
+          <ArrowLeft className={styles.backIcon} />
           Back to Lists
         </Button>
       </div>
 
-      <div className={styles.task__content}>
+      <div className={styles.content}>
         <TaskContainer
           taskList={currentList}
           onEditName={editTaskListName}
