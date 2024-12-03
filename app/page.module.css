@@ -59,3 +59,13 @@
   font-size: 0.875rem;
   color: var(--muted-foreground);
 }
+
+.icon {
+  height: var(--space-4);
+  width: var(--space-4);
+}
+
+.iconLarge {
+  height: var(--space-6);
+  width: var(--space-6);
+}
