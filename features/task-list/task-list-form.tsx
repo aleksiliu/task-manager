@@ -32,7 +32,7 @@ export function NewTaskListForm({ onSubmit, existingNames }: NewTaskListFormProp
         <CardTitle>Create New Task List</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <div className={styles.inputWrapper}>
               <label className='sr-only' htmlFor='new-list-name'>
