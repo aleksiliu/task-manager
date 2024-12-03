@@ -44,7 +44,7 @@ export default function TaskManager() {
             <p className={styles.emptyText}>Create your first task list to get started</p>
           </div>
           <Button onClick={() => document.querySelector('input')?.focus()} variant='outline'>
-            <Plus className='h-4 w-4' />
+            <Plus />
             Create task list
           </Button>
         </div>
