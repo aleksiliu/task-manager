@@ -1,4 +1,4 @@
-.card {
+.root {
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   background-color: var(--card);
@@ -9,7 +9,7 @@
   padding: var(--space-4);
 }
 
-.card:hover {
+.root:hover {
   box-shadow: var(--shadow-lg);
 }
 

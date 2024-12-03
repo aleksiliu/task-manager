@@ -6,7 +6,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(({ children, ...props }, ref) => (
-  <div ref={ref} className={styles['card']} {...props}>
+  <div ref={ref} className={styles.root} {...props}>
     {children}
   </div>
 ));
@@ -17,7 +17,7 @@ interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(({ children, ...props }, ref) => (
-  <div ref={ref} className={styles['header']} {...props}>
+  <div ref={ref} className={styles.header} {...props}>
     {children}
   </div>
 ));
@@ -28,7 +28,7 @@ interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(({ children, ...props }, ref) => (
-  <h2 ref={ref} className={styles['title']} {...props}>
+  <h2 ref={ref} className={styles.title} {...props}>
     {children}
   </h2>
 ));
@@ -39,7 +39,7 @@ interface CardDescriptionProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const CardDescription = React.forwardRef<HTMLDivElement, CardDescriptionProps>(({ children, ...props }, ref) => (
-  <div ref={ref} className={styles['description']} {...props}>
+  <div ref={ref} className={styles.description} {...props}>
     {children}
   </div>
 ));
