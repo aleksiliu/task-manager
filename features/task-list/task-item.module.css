@@ -68,8 +68,4 @@
   .actions {
     width: auto;
   }
-
-  .button {
-    flex-grow: 0;
-  }
 }
