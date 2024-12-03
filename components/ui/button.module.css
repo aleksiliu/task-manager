@@ -1,4 +1,4 @@
-.button {
+.root {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,7 @@
   min-width: max-content;
 }
 
-.button:disabled {
+.root:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -55,23 +55,23 @@
   border-color: var(--accent-foreground);
 }
 
-.size-default {
+.sizeDefault {
   height: var(--space-9);
   padding: 0 var(--space-4);
 }
 
-.size-icon {
+.sizeIcon {
   height: var(--space-8);
   width: var(--space-8);
   padding: var(--space-2);
 }
 
-.button svg {
+.icon {
   width: var(--space-4);
   height: var(--space-4);
 }
 
-.button__content {
+.content {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
