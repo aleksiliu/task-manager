@@ -50,7 +50,7 @@ interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(({ children, ...props }, ref) => (
-  <div ref={ref} className={styles['card-content']} {...props}>
+  <div ref={ref} className={styles.content} {...props}>
     {children}
   </div>
 ));
@@ -61,7 +61,7 @@ interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(({ children, ...props }, ref) => (
-  <div ref={ref} className={styles['card-footer']} {...props}>
+  <div ref={ref} className={styles.footer} {...props}>
     {children}
   </div>
 ));
